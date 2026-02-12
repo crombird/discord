@@ -1,0 +1,372 @@
+{
+  "+bG4IV1p": [
+    {
+      "type": 0,
+      "value": "The wiki to search in"
+    }
+  ],
+  "+qMhDBNn": [
+    {
+      "type": 0,
+      "value": "show-all-authors"
+    }
+  ],
+  "/jKJ9Lps": [
+    {
+      "type": 0,
+      "value": "in-diary"
+    }
+  ],
+  "0S5Klebi": [
+    {
+      "type": 0,
+      "value": "Get information about your wiki account from the server's current wiki"
+    }
+  ],
+  "0xi7OkoC": [
+    {
+      "type": 0,
+      "value": "Page through articles that meet certain criteria."
+    }
+  ],
+  "1qR4U+nX": [
+    {
+      "type": 0,
+      "value": "Manage assignment criteria for each role"
+    }
+  ],
+  "28Pg4mij": [
+    {
+      "type": 0,
+      "value": "name-or-rank"
+    }
+  ],
+  "2DwFzD54": [
+    {
+      "type": 0,
+      "value": "author"
+    }
+  ],
+  "2R7iQwVo": [
+    {
+      "type": 0,
+      "value": "Delete reply"
+    }
+  ],
+  "3N+Czn19": [
+    {
+      "type": 0,
+      "value": "Roles: Update prompt"
+    }
+  ],
+  "3mZ7dNKV": [
+    {
+      "type": 0,
+      "value": "settings"
+    }
+  ],
+  "5j9ZgEiZ": [
+    {
+      "type": 0,
+      "value": "query"
+    }
+  ],
+  "75KKxnPX": [
+    {
+      "type": 0,
+      "value": "date, descending"
+    }
+  ],
+  "A02HNyUP": [
+    {
+      "type": 0,
+      "value": "Filter by tag. You can also use \"not:[tag]\", \"by:[author-name]\", or \"crom:series-[N]\"."
+    }
+  ],
+  "AKBO3/d+": [
+    {
+      "type": 0,
+      "value": "Roles: Delete prompt"
+    }
+  ],
+  "Ab0kVAfD": [
+    {
+      "type": 0,
+      "value": "random"
+    }
+  ],
+  "BWJXrvLS": [
+    {
+      "type": 0,
+      "value": "title, ascending"
+    }
+  ],
+  "EiZnkr97": [
+    {
+      "type": 0,
+      "value": "Search for an article by its contents in the current wiki"
+    }
+  ],
+  "HH/mU1Vb": [
+    {
+      "type": 0,
+      "value": "List the five most recently created pages on the server's wiki"
+    }
+  ],
+  "I60WWdcC": [
+    {
+      "type": 0,
+      "value": "roles"
+    }
+  ],
+  "KO+G9VB4": [
+    {
+      "type": 0,
+      "value": "Create a prompt message for role selection"
+    }
+  ],
+  "LPR1HvxV": [
+    {
+      "type": 0,
+      "value": "manage"
+    }
+  ],
+  "LX7Ltynb": [
+    {
+      "type": 0,
+      "value": "date, ascending"
+    }
+  ],
+  "NT/yGZ1j": [
+    {
+      "type": 0,
+      "value": "Link to SCP"
+    }
+  ],
+  "P1rrI4gV": [
+    {
+      "type": 0,
+      "value": "reading-list"
+    }
+  ],
+  "P3CyxrtE": [
+    {
+      "type": 0,
+      "value": "Don't truncate the list of authors in the result"
+    }
+  ],
+  "PAsZotFd": [
+    {
+      "type": 0,
+      "value": "title, descending"
+    }
+  ],
+  "Pjs86wHp": [
+    {
+      "type": 0,
+      "value": "Filter pages that are in your Crom account diary"
+    }
+  ],
+  "Pqpm7GIM": [
+    {
+      "type": 0,
+      "value": "Get information about an author from the server's current wiki"
+    }
+  ],
+  "SVBdNvj2": [
+    {
+      "type": 0,
+      "value": "rating, descending"
+    }
+  ],
+  "TSlpjqNL": [
+    {
+      "type": 0,
+      "value": "tag-"
+    },
+    {
+      "type": 1,
+      "value": "id"
+    }
+  ],
+  "UrrwWOK4": [
+    {
+      "type": 0,
+      "value": "Allow Crom to auto-assign roles for server members based on wiki association"
+    }
+  ],
+  "Z8UsAlHT": [
+    {
+      "type": 0,
+      "value": "The wiki to use for your account"
+    }
+  ],
+  "cFXQx34A": [
+    {
+      "type": 0,
+      "value": "The query terms to search by"
+    }
+  ],
+  "cKlkQerm": [
+    {
+      "type": 0,
+      "value": "wiki"
+    }
+  ],
+  "dgHsQSUi": [
+    {
+      "type": 0,
+      "value": "killagent"
+    }
+  ],
+  "eG7ZaBws": [
+    {
+      "type": 0,
+      "value": "Username to search (or a rank if you format it like \"#123\")"
+    }
+  ],
+  "f5n5wCkt": [
+    {
+      "type": 0,
+      "value": "View or share your default Crom account reading list"
+    }
+  ],
+  "ftdnPHr0": [
+    {
+      "type": 0,
+      "value": "self"
+    }
+  ],
+  "hJWYHZfv": [
+    {
+      "type": 0,
+      "value": "The wiki to set this server to"
+    }
+  ],
+  "iHllVhlZ": [
+    {
+      "type": 0,
+      "value": "Add to reading list"
+    }
+  ],
+  "k2fhcaX8": [
+    {
+      "type": 0,
+      "value": "Update settings for Crom"
+    }
+  ],
+  "kr5GFza9": [
+    {
+      "type": 0,
+      "value": "server-wiki"
+    }
+  ],
+  "l51QKW/m": [
+    {
+      "type": 0,
+      "value": "The wiki to search by default for all users of this server"
+    }
+  ],
+  "l5wX+Xu5": [
+    {
+      "type": 0,
+      "value": "The order to return the pages in"
+    }
+  ],
+  "l91xIKIo": [
+    {
+      "type": 0,
+      "value": "name"
+    }
+  ],
+  "mPQU9K7B": [
+    {
+      "type": 0,
+      "value": "Respond with a random kill agent from a branch of the SCP wiki"
+    }
+  ],
+  "mjRmwV9i": [
+    {
+      "type": 0,
+      "value": "search"
+    }
+  ],
+  "nXANnC9J": [
+    {
+      "type": 0,
+      "value": "latest"
+    }
+  ],
+  "nhfcLRIB": [
+    {
+      "type": 0,
+      "value": "The wiki that Crom searches if you don't specify one"
+    }
+  ],
+  "qIBA3lir": [
+    {
+      "type": 0,
+      "value": "Search for an article by a search query in the current wiki"
+    }
+  ],
+  "qIGExRsy": [
+    {
+      "type": 0,
+      "value": "The query string to search by"
+    }
+  ],
+  "qfJ+S2Kx": [
+    {
+      "type": 0,
+      "value": "rating, ascending"
+    }
+  ],
+  "rgFdWGws": [
+    {
+      "type": 0,
+      "value": "Roles: Re-evaluate for user"
+    }
+  ],
+  "sPrNZ+HN": [
+    {
+      "type": 0,
+      "value": "prompt"
+    }
+  ],
+  "trxHXg6L": [
+    {
+      "type": 0,
+      "value": "list"
+    }
+  ],
+  "ujiML/pG": [
+    {
+      "type": 0,
+      "value": "An optional wiki to look in"
+    }
+  ],
+  "w9YBMp3u": [
+    {
+      "type": 0,
+      "value": "name"
+    }
+  ],
+  "xs/3rHQ0": [
+    {
+      "type": 0,
+      "value": "order"
+    }
+  ],
+  "z0vM8k7Y": [
+    {
+      "type": 0,
+      "value": "fullsearch"
+    }
+  ],
+  "zl11ao/B": [
+    {
+      "type": 0,
+      "value": "Returns a random page from the wiki"
+    }
+  ]
+}

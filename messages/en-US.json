@@ -1,0 +1,246 @@
+{
+  "+bG4IV1p": {
+    "defaultMessage": "The wiki to search in",
+    "description": "The description of the wiki option"
+  },
+  "+qMhDBNn": {
+    "defaultMessage": "show-all-authors",
+    "description": "The name of the show-all-authors option"
+  },
+  "/jKJ9Lps": {
+    "defaultMessage": "in-diary",
+    "description": "The name of the in-diary option"
+  },
+  "0S5Klebi": {
+    "defaultMessage": "Get information about your wiki account from the server's current wiki",
+    "description": "The description of the /self command"
+  },
+  "0xi7OkoC": {
+    "defaultMessage": "Page through articles that meet certain criteria.",
+    "description": "The description of the /list command"
+  },
+  "1qR4U+nX": {
+    "defaultMessage": "Manage assignment criteria for each role",
+    "description": "The description of the manage option"
+  },
+  "28Pg4mij": {
+    "defaultMessage": "name-or-rank",
+    "description": "The name of the name-or-rank option"
+  },
+  "2DwFzD54": {
+    "defaultMessage": "author",
+    "description": "The name of the /author command"
+  },
+  "2R7iQwVo": {
+    "defaultMessage": "Delete reply",
+    "description": "The name of the Delete reply message command"
+  },
+  "3N+Czn19": {
+    "defaultMessage": "Roles: Update prompt",
+    "description": "The name of the Roles: Update prompt message command"
+  },
+  "3mZ7dNKV": {
+    "defaultMessage": "settings",
+    "description": "The name of the /settings command"
+  },
+  "5j9ZgEiZ": {
+    "defaultMessage": "query",
+    "description": "The name of the query option"
+  },
+  "75KKxnPX": {
+    "defaultMessage": "date, descending",
+    "description": "The name of the \"date, descending\" sort option"
+  },
+  "A02HNyUP": {
+    "defaultMessage": "Filter by tag. You can also use \"not:[tag]\", \"by:[author-name]\", or \"crom:series-[N]\".",
+    "description": "The description of the tag-N option"
+  },
+  "AKBO3/d+": {
+    "defaultMessage": "Roles: Delete prompt",
+    "description": "The name of the Roles: Delete prompt message command"
+  },
+  "Ab0kVAfD": {
+    "defaultMessage": "random",
+    "description": "The name of the /random command"
+  },
+  "BWJXrvLS": {
+    "defaultMessage": "title, ascending",
+    "description": "The name of the \"title, ascending\" sort option"
+  },
+  "EiZnkr97": {
+    "defaultMessage": "Search for an article by its contents in the current wiki",
+    "description": "The description of the /fullsearch command"
+  },
+  "HH/mU1Vb": {
+    "defaultMessage": "List the five most recently created pages on the server's wiki",
+    "description": "The description of the /latest command"
+  },
+  "I60WWdcC": {
+    "defaultMessage": "roles",
+    "description": "The name of the /roles command"
+  },
+  "KO+G9VB4": {
+    "defaultMessage": "Create a prompt message for role selection",
+    "description": "The description of the prompt option"
+  },
+  "LPR1HvxV": {
+    "defaultMessage": "manage",
+    "description": "The name of the manage option"
+  },
+  "LX7Ltynb": {
+    "defaultMessage": "date, ascending",
+    "description": "The name of the \"date, ascending\" sort option"
+  },
+  "NT/yGZ1j": {
+    "defaultMessage": "Link to SCP",
+    "description": "The name of the Link to SCP message command"
+  },
+  "P1rrI4gV": {
+    "defaultMessage": "reading-list",
+    "description": "The name of the /reading-list command"
+  },
+  "P3CyxrtE": {
+    "defaultMessage": "Don't truncate the list of authors in the result",
+    "description": "The description of the show-all-authors option"
+  },
+  "PAsZotFd": {
+    "defaultMessage": "title, descending",
+    "description": "The name of the \"title, descending\" sort option"
+  },
+  "Pjs86wHp": {
+    "defaultMessage": "Filter pages that are in your Crom account diary",
+    "description": "The description of the in-diary option"
+  },
+  "Pqpm7GIM": {
+    "defaultMessage": "Get information about an author from the server's current wiki",
+    "description": "The description of the /author command"
+  },
+  "SVBdNvj2": {
+    "defaultMessage": "rating, descending",
+    "description": "The name of the \"rating, descending\" sort option"
+  },
+  "TSlpjqNL": {
+    "defaultMessage": "tag-{id}",
+    "description": "The name of the tag-N option"
+  },
+  "UrrwWOK4": {
+    "defaultMessage": "Allow Crom to auto-assign roles for server members based on wiki association",
+    "description": "The description of the /roles command"
+  },
+  "Z8UsAlHT": {
+    "defaultMessage": "The wiki to use for your account",
+    "description": "The description of the wiki name option"
+  },
+  "cFXQx34A": {
+    "defaultMessage": "The query terms to search by",
+    "description": "The description of the query option"
+  },
+  "cKlkQerm": {
+    "defaultMessage": "wiki",
+    "description": "The name of the wiki option"
+  },
+  "dgHsQSUi": {
+    "defaultMessage": "killagent",
+    "description": "The name of the /killagent command"
+  },
+  "eG7ZaBws": {
+    "defaultMessage": "Username to search (or a rank if you format it like \"#123\")",
+    "description": "The description of the name-or-rank option"
+  },
+  "f5n5wCkt": {
+    "defaultMessage": "View or share your default Crom account reading list",
+    "description": "The description of the /reading-list command"
+  },
+  "ftdnPHr0": {
+    "defaultMessage": "self",
+    "description": "The name of the /self command"
+  },
+  "hJWYHZfv": {
+    "defaultMessage": "The wiki to set this server to",
+    "description": "The description of the server wiki name option"
+  },
+  "iHllVhlZ": {
+    "defaultMessage": "Add to reading list",
+    "description": "The name of the Add to reading list message command"
+  },
+  "k2fhcaX8": {
+    "defaultMessage": "Update settings for Crom",
+    "description": "The description of the /settings command"
+  },
+  "kr5GFza9": {
+    "defaultMessage": "server-wiki",
+    "description": "The name of the server wiki option"
+  },
+  "l51QKW/m": {
+    "defaultMessage": "The wiki to search by default for all users of this server",
+    "description": "The description of the server wiki option"
+  },
+  "l5wX+Xu5": {
+    "defaultMessage": "The order to return the pages in",
+    "description": "The description of the order option"
+  },
+  "l91xIKIo": {
+    "defaultMessage": "name",
+    "description": "The name of the server wiki name option"
+  },
+  "mPQU9K7B": {
+    "defaultMessage": "Respond with a random kill agent from a branch of the SCP wiki",
+    "description": "The description of the /killagent command"
+  },
+  "mjRmwV9i": {
+    "defaultMessage": "search",
+    "description": "The name of the /search command"
+  },
+  "nXANnC9J": {
+    "defaultMessage": "latest",
+    "description": "The name of the /latest command"
+  },
+  "nhfcLRIB": {
+    "defaultMessage": "The wiki that Crom searches if you don't specify one",
+    "description": "The description of the wiki option"
+  },
+  "qIBA3lir": {
+    "defaultMessage": "Search for an article by a search query in the current wiki",
+    "description": "The description of the /search command"
+  },
+  "qIGExRsy": {
+    "defaultMessage": "The query string to search by",
+    "description": "The description of the query option"
+  },
+  "qfJ+S2Kx": {
+    "defaultMessage": "rating, ascending",
+    "description": "The name of the \"rating, ascending\" sort option"
+  },
+  "rgFdWGws": {
+    "defaultMessage": "Roles: Re-evaluate for user",
+    "description": "The name of the Roles: Re-evaluate for user user command"
+  },
+  "sPrNZ+HN": {
+    "defaultMessage": "prompt",
+    "description": "The name of the prompt option"
+  },
+  "trxHXg6L": {
+    "defaultMessage": "list",
+    "description": "The name of the /list command"
+  },
+  "ujiML/pG": {
+    "defaultMessage": "An optional wiki to look in",
+    "description": "The description of the wiki option"
+  },
+  "w9YBMp3u": {
+    "defaultMessage": "name",
+    "description": "The name of the wiki name option"
+  },
+  "xs/3rHQ0": {
+    "defaultMessage": "order",
+    "description": "The name of the order option"
+  },
+  "z0vM8k7Y": {
+    "defaultMessage": "fullsearch",
+    "description": "The name of the /fullsearch command"
+  },
+  "zl11ao/B": {
+    "defaultMessage": "Returns a random page from the wiki",
+    "description": "The description of the /random command"
+  }
+}

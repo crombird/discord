@@ -1,0 +1,30 @@
+# fly.toml app configuration file generated for crombird-discord-canary on 2023-10-12T03:31:07+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "crombird-discord"
+primary_region = "fra" # Same region as Crom API
+
+[env]
+  NODE_ENV = "production"
+  PORT = "3000"
+  METRICS_PORT = "9091"
+  API_ENDPOINT = "https://apiv2.crom.avn.sh/internal"
+  AUTH_ENDPOINT = "https://apiv2.crom.avn.sh/auth/token"
+  TYPESENSE_URL = "https://typesense.crom.avn.sh"
+
+[metrics]
+  port = 9091
+  path = "/metrics"
+
+[deploy]
+  release_command = "bun run release"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]

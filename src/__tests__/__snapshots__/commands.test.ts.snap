@@ -1,0 +1,745 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`command definitions match snapshot 1`] = `
+[
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "Add to reading list",
+    "name_localizations": {
+      "en-US": "Add to reading list",
+    },
+    "type": 3,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "description": "Get information about an author from the server's current wiki",
+    "description_localizations": {
+      "en-US": "Get information about an author from the server's current wiki",
+    },
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "author",
+    "name_localizations": {
+      "en-US": "author",
+    },
+    "options": [
+      {
+        "description": "Username to search (or a rank if you format it like "#123")",
+        "description_localizations": {
+          "en-US": "Username to search (or a rank if you format it like "#123")",
+        },
+        "name": "name-or-rank",
+        "name_localizations": {
+          "en-US": "name-or-rank",
+        },
+        "required": true,
+        "type": 3,
+      },
+      {
+        "autocomplete": true,
+        "description": "An optional wiki to look in",
+        "description_localizations": {
+          "en-US": "An optional wiki to look in",
+        },
+        "name": "wiki",
+        "name_localizations": {
+          "en-US": "wiki",
+        },
+        "required": false,
+        "type": 3,
+      },
+    ],
+    "type": 1,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "Delete reply",
+    "name_localizations": {
+      "en-US": "Delete reply",
+    },
+    "type": 3,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "description": "Search for an article by its contents in the current wiki",
+    "description_localizations": {
+      "en-US": "Search for an article by its contents in the current wiki",
+    },
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "fullsearch",
+    "name_localizations": {
+      "en-US": "fullsearch",
+    },
+    "options": [
+      {
+        "description": "The query terms to search by",
+        "description_localizations": {
+          "en-US": "The query terms to search by",
+        },
+        "name": "query",
+        "name_localizations": {
+          "en-US": "query",
+        },
+        "required": true,
+        "type": 3,
+      },
+      {
+        "autocomplete": true,
+        "description": "The wiki to search in",
+        "description_localizations": {
+          "en-US": "The wiki to search in",
+        },
+        "name": "wiki",
+        "name_localizations": {
+          "en-US": "wiki",
+        },
+        "required": false,
+        "type": 3,
+      },
+    ],
+    "type": 1,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "description": "Respond with a random kill agent from a branch of the SCP wiki",
+    "description_localizations": {
+      "en-US": "Respond with a random kill agent from a branch of the SCP wiki",
+    },
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "killagent",
+    "name_localizations": {
+      "en-US": "killagent",
+    },
+    "type": 1,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "description": "List the five most recently created pages on the server's wiki",
+    "description_localizations": {
+      "en-US": "List the five most recently created pages on the server's wiki",
+    },
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "latest",
+    "name_localizations": {
+      "en-US": "latest",
+    },
+    "options": [
+      {
+        "autocomplete": true,
+        "description": "An optional wiki to look in",
+        "description_localizations": {
+          "en-US": "An optional wiki to look in",
+        },
+        "name": "wiki",
+        "name_localizations": {
+          "en-US": "wiki",
+        },
+        "required": false,
+        "type": 3,
+      },
+    ],
+    "type": 1,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "Link to SCP",
+    "name_localizations": {
+      "en-US": "Link to SCP",
+    },
+    "type": 3,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "description": "Page through articles that meet certain criteria.",
+    "description_localizations": {
+      "en-US": "Page through articles that meet certain criteria.",
+    },
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "list",
+    "name_localizations": {
+      "en-US": "list",
+    },
+    "options": [
+      {
+        "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        "description_localizations": {
+          "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        },
+        "name": "tag-1",
+        "name_localizations": {
+          "en-US": "tag-1",
+        },
+        "required": true,
+        "type": 3,
+      },
+      {
+        "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        "description_localizations": {
+          "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        },
+        "name": "tag-2",
+        "name_localizations": {
+          "en-US": "tag-2",
+        },
+        "required": false,
+        "type": 3,
+      },
+      {
+        "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        "description_localizations": {
+          "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        },
+        "name": "tag-3",
+        "name_localizations": {
+          "en-US": "tag-3",
+        },
+        "required": false,
+        "type": 3,
+      },
+      {
+        "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        "description_localizations": {
+          "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        },
+        "name": "tag-4",
+        "name_localizations": {
+          "en-US": "tag-4",
+        },
+        "required": false,
+        "type": 3,
+      },
+      {
+        "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        "description_localizations": {
+          "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        },
+        "name": "tag-5",
+        "name_localizations": {
+          "en-US": "tag-5",
+        },
+        "required": false,
+        "type": 3,
+      },
+      {
+        "choices": [
+          {
+            "name": "title, ascending",
+            "name_localizations": {
+              "en-US": "title, ascending",
+            },
+            "value": "title-asc",
+          },
+          {
+            "name": "title, descending",
+            "name_localizations": {
+              "en-US": "title, descending",
+            },
+            "value": "title-desc",
+          },
+          {
+            "name": "rating, ascending",
+            "name_localizations": {
+              "en-US": "rating, ascending",
+            },
+            "value": "rating-asc",
+          },
+          {
+            "name": "rating, descending",
+            "name_localizations": {
+              "en-US": "rating, descending",
+            },
+            "value": "rating-desc",
+          },
+          {
+            "name": "date, ascending",
+            "name_localizations": {
+              "en-US": "date, ascending",
+            },
+            "value": "date-asc",
+          },
+          {
+            "name": "date, descending",
+            "name_localizations": {
+              "en-US": "date, descending",
+            },
+            "value": "date-desc",
+          },
+        ],
+        "description": "The order to return the pages in",
+        "description_localizations": {
+          "en-US": "The order to return the pages in",
+        },
+        "name": "order",
+        "name_localizations": {
+          "en-US": "order",
+        },
+        "required": false,
+        "type": 3,
+      },
+      {
+        "description": "Filter pages that are in your Crom account diary",
+        "description_localizations": {
+          "en-US": "Filter pages that are in your Crom account diary",
+        },
+        "name": "in-diary",
+        "name_localizations": {
+          "en-US": "in-diary",
+        },
+        "required": false,
+        "type": 5,
+      },
+      {
+        "autocomplete": true,
+        "description": "The wiki to search in",
+        "description_localizations": {
+          "en-US": "The wiki to search in",
+        },
+        "name": "wiki",
+        "name_localizations": {
+          "en-US": "wiki",
+        },
+        "required": false,
+        "type": 3,
+      },
+    ],
+    "type": 1,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "description": "Returns a random page from the wiki",
+    "description_localizations": {
+      "en-US": "Returns a random page from the wiki",
+    },
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "random",
+    "name_localizations": {
+      "en-US": "random",
+    },
+    "options": [
+      {
+        "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        "description_localizations": {
+          "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        },
+        "name": "tag-1",
+        "name_localizations": {
+          "en-US": "tag-1",
+        },
+        "required": false,
+        "type": 3,
+      },
+      {
+        "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        "description_localizations": {
+          "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        },
+        "name": "tag-2",
+        "name_localizations": {
+          "en-US": "tag-2",
+        },
+        "required": false,
+        "type": 3,
+      },
+      {
+        "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        "description_localizations": {
+          "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        },
+        "name": "tag-3",
+        "name_localizations": {
+          "en-US": "tag-3",
+        },
+        "required": false,
+        "type": 3,
+      },
+      {
+        "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        "description_localizations": {
+          "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        },
+        "name": "tag-4",
+        "name_localizations": {
+          "en-US": "tag-4",
+        },
+        "required": false,
+        "type": 3,
+      },
+      {
+        "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        "description_localizations": {
+          "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
+        },
+        "name": "tag-5",
+        "name_localizations": {
+          "en-US": "tag-5",
+        },
+        "required": false,
+        "type": 3,
+      },
+      {
+        "description": "Filter pages that are in your Crom account diary",
+        "description_localizations": {
+          "en-US": "Filter pages that are in your Crom account diary",
+        },
+        "name": "in-diary",
+        "name_localizations": {
+          "en-US": "in-diary",
+        },
+        "required": false,
+        "type": 5,
+      },
+      {
+        "autocomplete": true,
+        "description": "The wiki to search in",
+        "description_localizations": {
+          "en-US": "The wiki to search in",
+        },
+        "name": "wiki",
+        "name_localizations": {
+          "en-US": "wiki",
+        },
+        "required": false,
+        "type": 3,
+      },
+    ],
+    "type": 1,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "description": "View or share your default Crom account reading list",
+    "description_localizations": {
+      "en-US": "View or share your default Crom account reading list",
+    },
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "reading-list",
+    "name_localizations": {
+      "en-US": "reading-list",
+    },
+    "type": 1,
+  },
+  {
+    "contexts": [
+      0,
+    ],
+    "default_member_permissions": "268435456",
+    "description": "Allow Crom to auto-assign roles for server members based on wiki association",
+    "description_localizations": {
+      "en-US": "Allow Crom to auto-assign roles for server members based on wiki association",
+    },
+    "integration_types": [
+      0,
+    ],
+    "name": "roles",
+    "name_localizations": {
+      "en-US": "roles",
+    },
+    "options": [
+      {
+        "description": "Manage assignment criteria for each role",
+        "description_localizations": {
+          "en-US": "Manage assignment criteria for each role",
+        },
+        "name": "manage",
+        "name_localizations": {
+          "en-US": "manage",
+        },
+        "type": 1,
+      },
+      {
+        "description": "Create a prompt message for role selection",
+        "description_localizations": {
+          "en-US": "Create a prompt message for role selection",
+        },
+        "name": "prompt",
+        "name_localizations": {
+          "en-US": "prompt",
+        },
+        "type": 1,
+      },
+    ],
+    "type": 1,
+  },
+  {
+    "contexts": [
+      0,
+    ],
+    "default_member_permissions": "16",
+    "integration_types": [
+      0,
+    ],
+    "name": "Roles: Delete prompt",
+    "name_localizations": {
+      "en-US": "Roles: Delete prompt",
+    },
+    "type": 3,
+  },
+  {
+    "contexts": [
+      0,
+    ],
+    "default_member_permissions": "268435456",
+    "integration_types": [
+      0,
+    ],
+    "name": "Roles: Re-evaluate for user",
+    "name_localizations": {
+      "en-US": "Roles: Re-evaluate for user",
+    },
+    "type": 2,
+  },
+  {
+    "contexts": [
+      0,
+    ],
+    "default_member_permissions": "268435456",
+    "integration_types": [
+      0,
+    ],
+    "name": "Roles: Update prompt",
+    "name_localizations": {
+      "en-US": "Roles: Update prompt",
+    },
+    "type": 3,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "description": "Search for an article by a search query in the current wiki",
+    "description_localizations": {
+      "en-US": "Search for an article by a search query in the current wiki",
+    },
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "search",
+    "name_localizations": {
+      "en-US": "search",
+    },
+    "options": [
+      {
+        "description": "The query string to search by",
+        "description_localizations": {
+          "en-US": "The query string to search by",
+        },
+        "name": "query",
+        "name_localizations": {
+          "en-US": "query",
+        },
+        "required": true,
+        "type": 3,
+      },
+      {
+        "autocomplete": true,
+        "description": "The wiki to search in",
+        "description_localizations": {
+          "en-US": "The wiki to search in",
+        },
+        "name": "wiki",
+        "name_localizations": {
+          "en-US": "wiki",
+        },
+        "required": false,
+        "type": 3,
+      },
+      {
+        "description": "Don't truncate the list of authors in the result",
+        "description_localizations": {
+          "en-US": "Don't truncate the list of authors in the result",
+        },
+        "name": "show-all-authors",
+        "name_localizations": {
+          "en-US": "show-all-authors",
+        },
+        "required": false,
+        "type": 5,
+      },
+    ],
+    "type": 1,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "description": "Get information about your wiki account from the server's current wiki",
+    "description_localizations": {
+      "en-US": "Get information about your wiki account from the server's current wiki",
+    },
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "self",
+    "name_localizations": {
+      "en-US": "self",
+    },
+    "options": [
+      {
+        "autocomplete": true,
+        "description": "An optional wiki to look in",
+        "description_localizations": {
+          "en-US": "An optional wiki to look in",
+        },
+        "name": "wiki",
+        "name_localizations": {
+          "en-US": "wiki",
+        },
+        "required": false,
+        "type": 3,
+      },
+    ],
+    "type": 1,
+  },
+  {
+    "contexts": [
+      0,
+      1,
+      2,
+    ],
+    "description": "Update settings for Crom",
+    "description_localizations": {
+      "en-US": "Update settings for Crom",
+    },
+    "integration_types": [
+      0,
+      1,
+    ],
+    "name": "settings",
+    "name_localizations": {
+      "en-US": "settings",
+    },
+    "options": [
+      {
+        "description": "The wiki that Crom searches if you don't specify one",
+        "description_localizations": {
+          "en-US": "The wiki that Crom searches if you don't specify one",
+        },
+        "name": "wiki",
+        "name_localizations": {
+          "en-US": "wiki",
+        },
+        "options": [
+          {
+            "autocomplete": true,
+            "description": "The wiki to use for your account",
+            "description_localizations": {
+              "en-US": "The wiki to use for your account",
+            },
+            "name": "name",
+            "name_localizations": {
+              "en-US": "name",
+            },
+            "required": true,
+            "type": 3,
+          },
+        ],
+        "type": 1,
+      },
+      {
+        "description": "The wiki to search by default for all users of this server",
+        "description_localizations": {
+          "en-US": "The wiki to search by default for all users of this server",
+        },
+        "name": "server-wiki",
+        "name_localizations": {
+          "en-US": "server-wiki",
+        },
+        "options": [
+          {
+            "autocomplete": true,
+            "description": "The wiki to set this server to",
+            "description_localizations": {
+              "en-US": "The wiki to set this server to",
+            },
+            "name": "name",
+            "name_localizations": {
+              "en-US": "name",
+            },
+            "required": true,
+            "type": 3,
+          },
+        ],
+        "type": 1,
+      },
+    ],
+    "type": 1,
+  },
+]
+`;
