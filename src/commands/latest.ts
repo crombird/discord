@@ -232,6 +232,7 @@ export default defineCommand({
         });
         return [
           page.tags.includes("_adult") ? "🔞 " : "",
+          page.tags.includes("artwork") ? "🖼️ " : "",
           `**[${escapeMarkdown(title)}](${httpsify(page.url)})**`,
           typeof rating === "number" && !hideRating ? ` (**${formatRating(rating)}**)` : "",
           `  \n`,

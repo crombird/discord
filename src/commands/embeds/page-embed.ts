@@ -153,8 +153,9 @@ export function makePageEmbed(
   assert.equal(page.__typename, "WikidotPage", "Unexpected non-Wikidot page");
 
   const isAdult = page.tags.includes("_adult");
-  const title = formatFullTitle(page.title, page.alternateTitles[0]?.title);
+  const isArtwork = page.tags.includes("artwork");
 
+  const title = formatFullTitle(page.title, page.alternateTitles[0]?.title);
   let description = "";
 
   if (page.summary) {
@@ -265,6 +266,11 @@ export function makePageEmbed(
   // Add "adult" for articles with an adult tag
   if (isAdult) {
     footerParts.push("🔞 adult");
+  }
+
+  // Add "artwork" for articles with an artwork tag
+  if (isArtwork) {
+    footerParts.push("🖼️ artwork");
   }
 
   // Plug patreon if no other parts are present.

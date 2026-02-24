@@ -167,6 +167,18 @@ describe("makePageEmbed", () => {
     expect(embed.footer?.text).toContain("🔞 adult");
   });
 
+  test("shows artwork indicator for artwork-tagged articles", () => {
+    const page = makePage({ tags: ["artwork"] });
+    const embed = makePageEmbed(makeMinimalContext(), page, SCP_WIKI_URL);
+    expect(embed.footer?.text).toContain("🖼️ artwork");
+  });
+
+  test("shows both adult and artwork indicators for adult and artwork tagged articles", () => {
+    const page = makePage({ tags: ["_adult", "artwork"] });
+    const embed = makePageEmbed(makeMinimalContext(), page, SCP_WIKI_URL);
+    expect(embed.footer?.text).toContain("🔞 adult 🖼️ artwork");
+  });
+
   test("includes custom footer text", () => {
     const embed = makePageEmbed(makeMinimalContext(), makePage(), SCP_WIKI_URL, "Custom footer");
     expect(embed.footer?.text).toContain("Custom footer");

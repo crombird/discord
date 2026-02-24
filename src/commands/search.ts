@@ -240,7 +240,10 @@ export default defineCommand({
                 (highlight?.field === "title" ? highlight.snippet : document.title) ?? "";
               const alternateTitle =
                 highlight?.field === "alternateTitle" ? highlight.snippet : document.alternateTitle;
-              return `• [${formatFullTitle(title, alternateTitle)}](${url}) ` + `(${rating})`;
+              const prefix = document.tags.includes("artwork") ? "🖼️ " : "";
+              return (
+                `• [${prefix}${formatFullTitle(title, alternateTitle)}](${url}) ` + `(${rating})`
+              );
             })
             .join("\n");
 

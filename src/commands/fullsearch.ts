@@ -171,7 +171,7 @@ export default defineCommand({
         ? escapeMarkdown(highlight.snippet.replace(/\s+/g, " ")).replace(/<bold>/g, "**")
         : null;
       return (
-        `• **[${formatFullTitle(title, alternateTitle)}](${url})**` +
+        `• **[${document.tags.includes("artwork") ? "🖼️ " : ""}${formatFullTitle(title, alternateTitle)}](${url})**` +
         (hideRating ? "" : ` (${rating})`) +
         (textSnippet ? `\n> _...${textSnippet}..._` : "")
       );
