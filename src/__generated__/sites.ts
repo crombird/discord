@@ -297,6 +297,14 @@ const SITES = [
   },
   {
     "platform": "WIKIDOT",
+    "type": "BACKROOMS",
+    "url": "http://th-backrooms-wiki.wikidot.com",
+    "displayName": "The Backrooms - Thai",
+    "recentlyCreatedUrl": "https://th-backrooms-wiki.wikidot.com/most-recently-created",
+    "shortName": "the-backrooms-thai"
+  },
+  {
+    "platform": "WIKIDOT",
     "type": "CHAOS_INSURGENCY",
     "url": "http://ci-cn-wiki.wikidot.com",
     "displayName": "Chaos Insurgency - Chinese",

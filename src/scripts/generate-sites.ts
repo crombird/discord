@@ -17,10 +17,11 @@ const GENERATE_SITES_SCRIPT_QUERY = gql`
 `;
 
 // The Crom API supports unauthenticated access at a limited rate.
-const response = await fetch(
-  `https://apiv2.crom.avn.sh/internal?query=${encodeURIComponent(GENERATE_SITES_SCRIPT_QUERY)}`,
-  { headers: { accept: "application/json" } },
-);
+const response = await fetch(`https://apiv2.crom.avn.sh/internal`, {
+  method: "POST",
+  headers: { "content-type": "application/json" },
+  body: JSON.stringify({ query: GENERATE_SITES_SCRIPT_QUERY }),
+});
 if (!response.ok) throw new Error(`Got HTTP status code: ${response.status}`);
 
 const { data, errors } = (await response.json()) as {
