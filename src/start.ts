@@ -8,11 +8,14 @@ import { createDiscordClient } from "./common/discord";
 import { CromClient } from "./common/crom";
 import { TypesensePagesClient } from "./common/typesense";
 import { CrawlerClient } from "./common/crawler";
+import { TagConfigClient } from "./common/tag-config";
 import { ContextFactory } from "./common/context-factory";
 import { metricsHandler, updateInstallMetrics } from "./metrics";
 import { loadCommands } from "./common/command";
 import { createWebhookHandler } from "./webhook";
 import { assertEnv } from "./util/environment";
+
+import SITES from "./__generated__/sites";
 
 // Discord environment variables
 const DISCORD_TOKEN = assertEnv("DISCORD_TOKEN");
@@ -39,7 +42,14 @@ const discordApi = createDiscordClient(DISCORD_TOKEN);
 const cromApi = new CromClient(API_ENDPOINT, AUTH_ENDPOINT, CROM_CLIENT_ID, CROM_CLIENT_SECRET);
 const typesenseApi = new TypesensePagesClient(TYPESENSE_URL, TYPESENSE_API_KEY);
 const crawlerApi = new CrawlerClient(CRAWLER_API_URL, CRAWLER_AUTH_TOKEN);
-const contextFactory = new ContextFactory(discordApi, cromApi, typesenseApi, crawlerApi);
+const tagConfigApi = new TagConfigClient(SITES);
+const contextFactory = new ContextFactory(
+  discordApi,
+  cromApi,
+  typesenseApi,
+  crawlerApi,
+  tagConfigApi,
+);
 const webhookHandler = createWebhookHandler(DISCORD_PUBLIC_KEY, commands, contextFactory);
 
 // Start discord webhook server
@@ -64,3 +74,7 @@ setInterval(() => {
     Sentry.captureException(error);
   });
 }, 300_000);
+
+// Populate the tag config store immediately, then keep it fresh every 2 hours.
+tagConfigApi.refresh();
+setInterval(() => tagConfigApi.refresh(), 7_200_000);

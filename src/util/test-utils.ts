@@ -6,6 +6,7 @@ import { enUS } from "date-fns/locale";
 import type { CromClient } from "../common/crom";
 import type { CrawlerClient } from "../common/crawler";
 import type { TypesensePagesClient } from "../common/typesense";
+import type { TagConfigClient } from "../common/tag-config";
 import type { RESTWithTypeParameters } from "../common/discord";
 import type { ContextFactory } from "../common/context-factory";
 import enUSMessages from "../__generated__/messages/en-US.json";
@@ -67,6 +68,13 @@ export function createMockTypesenseClient(): TypesensePagesClient {
   } as unknown as TypesensePagesClient;
 }
 
+export function createMockTagConfigClient(): TagConfigClient {
+  return {
+    refresh: mock().mockRejectedValue(NOT_IMPLEMENTED_ERROR),
+    getTags: mock(() => []),
+  } as unknown as TagConfigClient;
+}
+
 export function createMockDiscordApi(): RESTWithTypeParameters {
   return {
     get: mock().mockRejectedValue(NOT_IMPLEMENTED_ERROR),
@@ -84,6 +92,7 @@ export function createMockContextFactory(): ContextFactory {
     cromApi: createMockCromClient(),
     crawlerApi: createMockCrawlerClient(),
     typesenseApi: createMockTypesenseClient(),
+    tagConfigApi: createMockTagConfigClient(),
     fetchContext: mock().mockRejectedValue(NOT_IMPLEMENTED_ERROR),
     intl: EN_US_INTL,
     dateFnsLocale: enUS,

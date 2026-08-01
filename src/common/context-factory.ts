@@ -5,6 +5,7 @@ import type { RESTWithTypeParameters } from "./discord";
 import { gql, type CromClient } from "./crom";
 import type { TypesensePagesClient } from "./typesense";
 import type { CrawlerClient } from "./crawler";
+import type { TagConfigClient } from "./tag-config";
 import type {
   GetDmContextInfoQuery,
   GetDmContextInfoQueryVariables,
@@ -56,17 +57,20 @@ export class ContextFactory {
   public readonly cromApi: CromClient;
   public readonly typesenseApi: TypesensePagesClient;
   public readonly crawlerApi: CrawlerClient;
+  public readonly tagConfigApi: TagConfigClient;
 
   constructor(
     discordApi: RESTWithTypeParameters,
     cromApi: CromClient,
     typesenseApi: TypesensePagesClient,
     crawlerApi: CrawlerClient,
+    tagConfigApi: TagConfigClient,
   ) {
     this.discordApi = discordApi;
     this.cromApi = cromApi;
     this.typesenseApi = typesenseApi;
     this.crawlerApi = crawlerApi;
+    this.tagConfigApi = tagConfigApi;
   }
 
   async fetchContext({ locale, userId, guildId }: FetchContextOptions): Promise<Context> {

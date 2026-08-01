@@ -20,6 +20,7 @@
     "date-fns": "^4.1.0",
     "discord-api-types": "^0.38.40",
     "discord-interactions": "^4.4.0",
+    "match-sorter": "^8.3.0",
     "mnemonist": "^0.40.3",
     "p-limit": "^7.3.0",
     "prom-client": "^15.1.3",

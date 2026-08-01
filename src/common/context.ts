@@ -62,6 +62,11 @@ export class Context {
     return this.#factory.crawlerApi;
   }
 
+  /** The client holding each wiki's in-memory tag config, refreshed periodically. */
+  get tagConfigApi() {
+    return this.#factory.tagConfigApi;
+  }
+
   /** Get the interaction token for a previously encountered interaction by its ID. */
   getInteractionToken(interactionId: string) {
     return this.#factory.interactionTokenCache.get(interactionId);

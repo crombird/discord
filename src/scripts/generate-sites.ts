@@ -12,6 +12,7 @@ const GENERATE_SITES_SCRIPT_QUERY = gql`
       url
       displayName
       recentlyCreatedUrl
+      tagConfigUrl
     }
   }
 `;

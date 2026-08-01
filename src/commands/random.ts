@@ -18,7 +18,11 @@ import {
 import { defineCommand } from "../common/command";
 import { localizationMap } from "../util/locale";
 import * as messages from "./random.intl";
-import { autocompleteSites } from "../util/discord-autocomplete";
+import {
+  autocompleteSites,
+  autocompleteTags,
+  getFocusedOption,
+} from "../util/discord-autocomplete";
 import { findOption, getInteractionUser } from "../util/discord-interaction";
 import { gql } from "../common/crom";
 import { userDependentResponse } from "../util/discord-response";
@@ -65,6 +69,7 @@ export default defineCommand({
         ].join(" "),
         description_localizations: localizationMap(messages.optionTagNameDescription),
         required: false,
+        autocomplete: true,
       })),
       {
         type: ApplicationCommandOptionType.Boolean,
@@ -104,7 +109,22 @@ export default defineCommand({
 
   async handle(interaction, context) {
     if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
-      return autocompleteSites(interaction);
+      const focusedOptionName = getFocusedOption(interaction.data.options)?.name;
+      if (focusedOptionName === "wiki") {
+        return autocompleteSites(interaction);
+      }
+      if (focusedOptionName?.startsWith("tag-")) {
+        const shortName = findOption(
+          interaction.data.options,
+          "wiki",
+          ApplicationCommandOptionType.String,
+        );
+        const siteUrl =
+          (!!shortName && SITES.find((site) => site.shortName === shortName)?.url) ||
+          context.defaultSite.url;
+        return autocompleteTags(interaction, context, siteUrl);
+      }
+      throw new Error(`Invalid focused option: ${focusedOptionName}`);
     }
 
     let tags: string[];

@@ -4,12 +4,14 @@ import type { CromClient } from "../crom";
 import type { CrawlerClient } from "../crawler";
 import type { RESTWithTypeParameters } from "../discord";
 import type { TypesensePagesClient } from "../typesense";
+import type { TagConfigClient } from "../tag-config";
 import { ContextFactory } from "../context-factory";
 import {
   createMockDiscordApi,
   createMockCromClient,
   createMockCrawlerClient,
   createMockTypesenseClient,
+  createMockTagConfigClient,
   SAMPLE_SITES,
   mocked,
 } from "../../util/test-utils";
@@ -23,6 +25,7 @@ describe("ContextFactory", () => {
   let mockCromApi: CromClient;
   let mockCrawlerApi: CrawlerClient;
   let mockTypesenseApi: TypesensePagesClient;
+  let mockTagConfigApi: TagConfigClient;
   let factory: ContextFactory;
 
   beforeEach(() => {
@@ -30,12 +33,14 @@ describe("ContextFactory", () => {
     mockCromApi = createMockCromClient();
     mockCrawlerApi = createMockCrawlerClient();
     mockTypesenseApi = createMockTypesenseClient();
+    mockTagConfigApi = createMockTagConfigClient();
 
     factory = new ContextFactory(
       mockDiscordApi,
       mockCromApi as unknown as CromClient,
       mockTypesenseApi,
       mockCrawlerApi,
+      mockTagConfigApi,
     );
   });
 

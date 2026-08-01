@@ -219,6 +219,7 @@ exports[`command definitions match snapshot 1`] = `
     },
     "options": [
       {
+        "autocomplete": true,
         "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
         "description_localizations": {
           "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
@@ -231,6 +232,7 @@ exports[`command definitions match snapshot 1`] = `
         "type": 3,
       },
       {
+        "autocomplete": true,
         "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
         "description_localizations": {
           "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
@@ -243,6 +245,7 @@ exports[`command definitions match snapshot 1`] = `
         "type": 3,
       },
       {
+        "autocomplete": true,
         "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
         "description_localizations": {
           "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
@@ -255,6 +258,7 @@ exports[`command definitions match snapshot 1`] = `
         "type": 3,
       },
       {
+        "autocomplete": true,
         "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
         "description_localizations": {
           "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
@@ -267,6 +271,7 @@ exports[`command definitions match snapshot 1`] = `
         "type": 3,
       },
       {
+        "autocomplete": true,
         "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
         "description_localizations": {
           "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
@@ -382,6 +387,7 @@ exports[`command definitions match snapshot 1`] = `
     },
     "options": [
       {
+        "autocomplete": true,
         "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
         "description_localizations": {
           "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
@@ -394,6 +400,7 @@ exports[`command definitions match snapshot 1`] = `
         "type": 3,
       },
       {
+        "autocomplete": true,
         "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
         "description_localizations": {
           "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
@@ -406,6 +413,7 @@ exports[`command definitions match snapshot 1`] = `
         "type": 3,
       },
       {
+        "autocomplete": true,
         "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
         "description_localizations": {
           "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
@@ -418,6 +426,7 @@ exports[`command definitions match snapshot 1`] = `
         "type": 3,
       },
       {
+        "autocomplete": true,
         "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
         "description_localizations": {
           "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
@@ -430,6 +439,7 @@ exports[`command definitions match snapshot 1`] = `
         "type": 3,
       },
       {
+        "autocomplete": true,
         "description": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
         "description_localizations": {
           "en-US": "Filter by tag. You can also use "not:[tag]", "by:[author-name]", or "crom:series-[N]".",
