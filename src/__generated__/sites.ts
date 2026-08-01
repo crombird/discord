@@ -317,7 +317,7 @@ const SITES = [
   {
     "platform": "WIKIDOT",
     "type": "BACKROOMS",
-    "url": "http://de-backrooms-wiki.wikidot.com",
+    "url": "http://dach-backrooms-wiki.wikidot.com",
     "displayName": "The Backrooms - German",
     "recentlyCreatedUrl": null,
     "tagConfigUrl": null,
