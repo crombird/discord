@@ -26,6 +26,7 @@ import { autocompleteSites } from "../util/discord-autocomplete";
 import { findOption, getInteractionUser } from "../util/discord-interaction";
 import { gql } from "../common/crom";
 import { userDependentResponse } from "../util/discord-response";
+import { isAdultTag, isArtworkTag } from "../util/tags";
 import { ACTIVE_CONTEST_TAGS, PATREON_MESSAGE } from "../constants";
 import {
   embedColor,
@@ -231,8 +232,8 @@ export default defineCommand({
           locale: context.dateFnsLocale,
         });
         return [
-          page.tags.includes("_adult") ? "🔞 " : "",
-          page.tags.includes("artwork") ? "🖼️ " : "",
+          page.tags.some(isAdultTag) ? "🔞 " : "",
+          page.tags.some(isArtworkTag) ? "🖼️ " : "",
           `**[${escapeMarkdown(title)}](${httpsify(page.url)})**`,
           typeof rating === "number" && !hideRating ? ` (**${formatRating(rating)}**)` : "",
           `  \n`,

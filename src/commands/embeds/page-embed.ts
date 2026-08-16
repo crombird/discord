@@ -14,6 +14,7 @@ import {
   truncateText,
 } from "../../util/formatting";
 import { ATTRIBUTION_EMBED_INFO, formatAttributions } from "../../util/attribution-list";
+import { isAdultTag, isArtworkTag } from "../../util/tags";
 import type { PageEmbedInfoFragment } from "../../__generated__/graphql";
 import type { Context } from "../../common/context";
 
@@ -152,8 +153,8 @@ export function makePageEmbed(
   // For now, the discord bot only supports wikidot sites.
   assert.equal(page.__typename, "WikidotPage", "Unexpected non-Wikidot page");
 
-  const isAdult = page.tags.includes("_adult");
-  const isArtwork = page.tags.includes("artwork");
+  const isAdult = page.tags.some(isAdultTag);
+  const isArtwork = page.tags.some(isArtworkTag);
 
   const title = formatFullTitle(page.title, page.alternateTitles[0]?.title);
   let description = "";
