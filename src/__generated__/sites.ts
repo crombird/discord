@@ -174,10 +174,10 @@ const SITES = [
     "platform": "WIKIDOT",
     "type": "SCP_WIKI",
     "url": "http://scp-id.wikidot.com",
-    "displayName": "SCP Wiki - Indonesian (unofficial)",
+    "displayName": "SCP Wiki - Indonesian",
     "recentlyCreatedUrl": "https://scp-id.wikidot.com/new-pages-feed",
     "tagConfigUrl": null,
-    "shortName": "scp-wiki-indonesian-unofficial"
+    "shortName": "scp-wiki-indonesian"
   },
   {
     "platform": "WIKIDOT",
