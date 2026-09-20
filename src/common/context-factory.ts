@@ -6,6 +6,7 @@ import { gql, type CromClient } from "./crom";
 import type { TypesensePagesClient } from "./typesense";
 import type { CrawlerClient } from "./crawler";
 import type { TagConfigClient } from "./tag-config";
+import type { JevClient } from "./jev";
 import type {
   GetDmContextInfoQuery,
   GetDmContextInfoQueryVariables,
@@ -20,6 +21,11 @@ const GET_GUILD_CONTEXT_INFO = gql`
     }
     discordUserInfo(discordId: $userId) {
       defaultSiteUrl
+      account {
+        patreonIntegration {
+          isActive
+        }
+      }
     }
   }
 `;
@@ -28,6 +34,11 @@ const GET_DM_CONTEXT_INFO = gql`
   query GetDmContextInfo($userId: String!) {
     discordUserInfo(discordId: $userId) {
       defaultSiteUrl
+      account {
+        patreonIntegration {
+          isActive
+        }
+      }
     }
   }
 `;
@@ -38,6 +49,7 @@ interface RemoteGuildContextData {
 
 interface RemoteUserContextData {
   defaultSiteUrl?: string;
+  isPatreonSupporter?: boolean;
 }
 
 interface FetchContextOptions {
@@ -58,6 +70,7 @@ export class ContextFactory {
   public readonly typesenseApi: TypesensePagesClient;
   public readonly crawlerApi: CrawlerClient;
   public readonly tagConfigApi: TagConfigClient;
+  public readonly jevApi: JevClient;
 
   constructor(
     discordApi: RESTWithTypeParameters,
@@ -65,12 +78,14 @@ export class ContextFactory {
     typesenseApi: TypesensePagesClient,
     crawlerApi: CrawlerClient,
     tagConfigApi: TagConfigClient,
+    jevApi: JevClient,
   ) {
     this.discordApi = discordApi;
     this.cromApi = cromApi;
     this.typesenseApi = typesenseApi;
     this.crawlerApi = crawlerApi;
     this.tagConfigApi = tagConfigApi;
+    this.jevApi = jevApi;
   }
 
   async fetchContext({ locale, userId, guildId }: FetchContextOptions): Promise<Context> {
@@ -84,7 +99,10 @@ export class ContextFactory {
       >(GET_GUILD_CONTEXT_INFO, { userId, guildId });
       guildContextData = { defaultSiteUrl: discordGuildInfo.defaultSiteUrl };
       this.guildContextCache.set(guildId, guildContextData);
-      userContextData = { defaultSiteUrl: discordUserInfo.defaultSiteUrl ?? undefined };
+      userContextData = {
+        defaultSiteUrl: discordUserInfo.defaultSiteUrl ?? undefined,
+        isPatreonSupporter: discordUserInfo.account?.patreonIntegration?.isActive ?? false,
+      };
       this.userContextCache.set(userId, userContextData);
     }
 
@@ -93,7 +111,10 @@ export class ContextFactory {
         GetDmContextInfoQuery,
         GetDmContextInfoQueryVariables
       >(GET_DM_CONTEXT_INFO, { userId });
-      userContextData = { defaultSiteUrl: discordUserInfo.defaultSiteUrl ?? undefined };
+      userContextData = {
+        defaultSiteUrl: discordUserInfo.defaultSiteUrl ?? undefined,
+        isPatreonSupporter: discordUserInfo.account?.patreonIntegration?.isActive ?? false,
+      };
       this.userContextCache.set(userId, userContextData);
     }
 
@@ -106,6 +127,10 @@ export class ContextFactory {
       // Use default site if there's no user preference in a DM.
       DEFAULT_SITE_URL;
 
-    return new Context(this, { locale, defaultSiteUrl });
+    return new Context(this, {
+      locale,
+      defaultSiteUrl,
+      isPatreonSupporter: userContextData?.isPatreonSupporter ?? false,
+    });
   }
 }

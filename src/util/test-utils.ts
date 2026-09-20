@@ -7,6 +7,7 @@ import type { CromClient } from "../common/crom";
 import type { CrawlerClient } from "../common/crawler";
 import type { TypesensePagesClient } from "../common/typesense";
 import type { TagConfigClient } from "../common/tag-config";
+import type { JevClient } from "../common/jev";
 import type { RESTWithTypeParameters } from "../common/discord";
 import type { ContextFactory } from "../common/context-factory";
 import enUSMessages from "../__generated__/messages/en-US.json";
@@ -75,6 +76,12 @@ export function createMockTagConfigClient(): TagConfigClient {
   } as unknown as TagConfigClient;
 }
 
+export function createMockJevClient(): JevClient {
+  return {
+    rerankTypesenseHits: mock().mockRejectedValue(NOT_IMPLEMENTED_ERROR),
+  } as unknown as JevClient;
+}
+
 export function createMockDiscordApi(): RESTWithTypeParameters {
   return {
     get: mock().mockRejectedValue(NOT_IMPLEMENTED_ERROR),
@@ -93,6 +100,7 @@ export function createMockContextFactory(): ContextFactory {
     crawlerApi: createMockCrawlerClient(),
     typesenseApi: createMockTypesenseClient(),
     tagConfigApi: createMockTagConfigClient(),
+    jevApi: createMockJevClient(),
     fetchContext: mock().mockRejectedValue(NOT_IMPLEMENTED_ERROR),
     intl: EN_US_INTL,
     dateFnsLocale: enUS,

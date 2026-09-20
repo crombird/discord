@@ -9,6 +9,7 @@ import { CromClient } from "./common/crom";
 import { TypesensePagesClient } from "./common/typesense";
 import { CrawlerClient } from "./common/crawler";
 import { TagConfigClient } from "./common/tag-config";
+import { JevClient } from "./common/jev";
 import { ContextFactory } from "./common/context-factory";
 import { metricsHandler, updateInstallMetrics } from "./metrics";
 import { loadCommands } from "./common/command";
@@ -33,6 +34,9 @@ const TYPESENSE_API_KEY = assertEnv("TYPESENSE_API_KEY");
 const CRAWLER_API_URL = assertEnv("CRAWLER_API_URL");
 const CRAWLER_AUTH_TOKEN = assertEnv("CRAWLER_AUTH_TOKEN");
 
+// TypeSafe environment variables
+const TYPESAFE_API_KEY = assertEnv("TYPESAFE_API_KEY");
+
 // Fly environment variables
 const METRICS_PORT = assertEnv("METRICS_PORT");
 
@@ -43,12 +47,14 @@ const cromApi = new CromClient(API_ENDPOINT, AUTH_ENDPOINT, CROM_CLIENT_ID, CROM
 const typesenseApi = new TypesensePagesClient(TYPESENSE_URL, TYPESENSE_API_KEY);
 const crawlerApi = new CrawlerClient(CRAWLER_API_URL, CRAWLER_AUTH_TOKEN);
 const tagConfigApi = new TagConfigClient(SITES);
+const jevApi = new JevClient(TYPESAFE_API_KEY);
 const contextFactory = new ContextFactory(
   discordApi,
   cromApi,
   typesenseApi,
   crawlerApi,
   tagConfigApi,
+  jevApi,
 );
 const webhookHandler = createWebhookHandler(DISCORD_PUBLIC_KEY, commands, contextFactory);
 

@@ -16,6 +16,7 @@ describe("Context", () => {
       const ctxFrench = new Context(mockFactory, {
         locale: "en-US",
         defaultSiteUrl: SAMPLE_SITES.scpWikiFrench.url,
+        isPatreonSupporter: false,
       });
       expect(ctxFrench.defaultSite.url).toBe(SAMPLE_SITES.scpWikiFrench.url);
       expect(ctxFrench.defaultSite.displayName).toBe("SCP Wiki - French");
@@ -28,6 +29,7 @@ describe("Context", () => {
       const ctx = new Context(mockFactory, {
         locale: "en-US",
         defaultSiteUrl: SAMPLE_SITES.scpWikiEnglish.url,
+        isPatreonSupporter: false,
       });
       expect(ctx.getInteractionToken("interaction-123")).toBe("token-abc");
     });
@@ -36,6 +38,7 @@ describe("Context", () => {
       const ctx = new Context(mockFactory, {
         locale: "en-US",
         defaultSiteUrl: SAMPLE_SITES.scpWikiEnglish.url,
+        isPatreonSupporter: false,
       });
       expect(ctx.getInteractionToken("nonexistent")).toBeUndefined();
     });
@@ -50,6 +53,7 @@ describe("Context", () => {
       const ctx = new Context(mockFactory, {
         locale: "en-US",
         defaultSiteUrl: SAMPLE_SITES.scpWikiEnglish.url,
+        isPatreonSupporter: false,
       });
 
       ctx.clearCacheByGuild("guild-123");
@@ -66,6 +70,7 @@ describe("Context", () => {
       const ctx = new Context(mockFactory, {
         locale: "en-US",
         defaultSiteUrl: SAMPLE_SITES.scpWikiEnglish.url,
+        isPatreonSupporter: false,
       });
 
       ctx.clearCacheByUser("user-123");

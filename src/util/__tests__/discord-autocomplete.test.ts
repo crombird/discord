@@ -57,7 +57,11 @@ const OVERFLOW_CHOICE = { name: "Keep typing to reveal more results...", value: 
 function createTagContext(tags: string[] = TEST_TAGS): Context {
   const factory = createMockContextFactory();
   mocked(factory.tagConfigApi.getTags).mockReturnValue(tags);
-  return new Context(factory, { locale: "en-US", defaultSiteUrl: DEFAULT_SITE_URL });
+  return new Context(factory, {
+    locale: "en-US",
+    defaultSiteUrl: DEFAULT_SITE_URL,
+    isPatreonSupporter: false,
+  });
 }
 
 describe("autocompleteFromList", () => {

@@ -944,14 +944,14 @@ export type GetGuildContextInfoQueryVariables = Exact<{
 }>;
 
 
-export type GetGuildContextInfoQuery = { discordGuildInfo: { defaultSiteUrl: string }, discordUserInfo: { defaultSiteUrl?: string | null } };
+export type GetGuildContextInfoQuery = { discordGuildInfo: { defaultSiteUrl: string }, discordUserInfo: { defaultSiteUrl?: string | null, account?: { patreonIntegration?: { isActive: boolean } | null } | null } };
 
 export type GetDmContextInfoQueryVariables = Exact<{
   userId: Scalars['String']['input'];
 }>;
 
 
-export type GetDmContextInfoQuery = { discordUserInfo: { defaultSiteUrl?: string | null } };
+export type GetDmContextInfoQuery = { discordUserInfo: { defaultSiteUrl?: string | null, account?: { patreonIntegration?: { isActive: boolean } | null } | null } };
 
 export type GenerateSitesScriptQueryVariables = Exact<{ [key: string]: never; }>;
 

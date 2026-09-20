@@ -8,6 +8,7 @@ import { getLocaleData } from "../util/locale";
 interface ContextData {
   locale: string;
   defaultSiteUrl: string;
+  isPatreonSupporter: boolean;
 }
 
 export class Context {
@@ -31,8 +32,17 @@ export class Context {
    */
   public readonly dateFnsLocale: DateFnsLocale;
 
-  constructor(factory: ContextFactory, { defaultSiteUrl, locale }: ContextData) {
+  /**
+   * Whether the caller has an active Patreon subscription linked to their Crom account.
+   */
+  public readonly isPatreonSupporter: boolean;
+
+  constructor(
+    factory: ContextFactory,
+    { defaultSiteUrl, locale, isPatreonSupporter }: ContextData,
+  ) {
     this.#factory = factory;
+    this.isPatreonSupporter = isPatreonSupporter;
 
     const { intl, dateFnsLocale } = getLocaleData(locale);
     this.intl = intl;
@@ -65,6 +75,11 @@ export class Context {
   /** The client holding each wiki's in-memory tag config, refreshed periodically. */
   get tagConfigApi() {
     return this.#factory.tagConfigApi;
+  }
+
+  /** The API client for the TypeSafe Jev API. */
+  get jevApi() {
+    return this.#factory.jevApi;
   }
 
   /** Get the interaction token for a previously encountered interaction by its ID. */

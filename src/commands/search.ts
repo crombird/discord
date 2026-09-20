@@ -10,6 +10,7 @@ import {
   InteractionContextType,
 } from "discord-api-types/v10";
 import { LRUCache } from "mnemonist";
+import * as Sentry from "@sentry/bun";
 
 import { defineCommand } from "../common/command";
 import { localizationMap } from "../util/locale";
@@ -53,6 +54,8 @@ const PAGE_BY_URL_QUERY = gql`
 
 const FULLSEARCH_HINT = "Can't find what you're looking for? Try /fullsearch.";
 
+const AI_RERANK_DISCLAIMER = "AI-assisted search (beta)";
+
 const userInvocationCache = new LRUCache<string, { windowStart: number; invocations: number }>(100);
 function trackRecentCall(discordId: string): number {
   const invocationInfo = userInvocationCache.get(discordId);
@@ -67,6 +70,15 @@ function trackRecentCall(discordId: string): number {
   userInvocationCache.set(discordId, { windowStart: Date.now(), invocations: 1 });
   return 1;
 }
+
+/** Combined time budget for the Typesense and Jev requests */
+const RERANK_TIMEOUT_MS = 2000;
+
+/**
+ * The top reranked hit must score at least this to be used, otherwise the regular search
+ * runs instead of showing a page Jev doesn't think the user meant. To be calibrated.
+ */
+const MIN_RERANK_CONFIDENCE = 0.5;
 
 export default defineCommand({
   definition: {
@@ -205,6 +217,57 @@ export default defineCommand({
             flags: MessageFlags.Ephemeral,
           },
         };
+      }
+    }
+
+    if (context.isPatreonSupporter) {
+      // Rerank Typesense's candidates with Jev. Any failure or timeout falls through to
+      // the regular search below.
+      const signal = AbortSignal.timeout(RERANK_TIMEOUT_MS);
+      try {
+        const typesenseResponse = await context.typesenseApi.request({
+          query,
+          page: 1,
+          siteUrl: site.url,
+          // It's better to give a wide net of loosely matched candidates to Jev and let
+          // it pick the best one.
+          perPage: 30,
+          numTypos: 2,
+          // Give it even more context using pages that match by text content, even though
+          // they shouldn't be directly used for matching.
+          includeTextContent: true,
+          highlightFields: true,
+          boostTitles: true,
+          signal,
+        });
+        const [best] = await context.jevApi.rerankTypesenseHits(query, typesenseResponse, {
+          signal,
+        });
+        if (best && best.score >= MIN_RERANK_CONFIDENCE) {
+          const { wikidotPage } = await context.cromApi.request<
+            PageByUrlQuery,
+            PageByUrlQueryVariables
+          >(PAGE_BY_URL_QUERY, { url: best.hit.document.url, siteUrl: site.url });
+          if (wikidotPage) {
+            const embed = makePageEmbed(
+              context,
+              wikidotPage,
+              site.url,
+              AI_RERANK_DISCLAIMER,
+              showAllAuthors,
+            );
+            return {
+              type: InteractionResponseType.ChannelMessageWithSource,
+              data: { embeds: [embed] },
+            };
+          }
+        }
+      } catch (error) {
+        // Running out of time is non-fatal, so it isn't worth reporting.
+        if (!signal.aborted) {
+          console.error(error);
+          Sentry.captureException(error, { extra: { query } });
+        }
       }
     }
 
