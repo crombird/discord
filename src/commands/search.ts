@@ -54,7 +54,7 @@ const PAGE_BY_URL_QUERY = gql`
 
 const FULLSEARCH_HINT = "Can't find what you're looking for? Try /fullsearch.";
 
-const AI_RERANK_DISCLAIMER = "AI-assisted search (beta)";
+const CLOSEST_MATCH_FOOTER = "🎯 Closest match";
 
 const userInvocationCache = new LRUCache<string, { windowStart: number; invocations: number }>(100);
 function trackRecentCall(discordId: string): number {
@@ -78,7 +78,13 @@ const RERANK_TIMEOUT_MS = 2000;
  * The top reranked hit must score at least this to be used, otherwise the regular search
  * runs instead of showing a page Jev doesn't think the user meant. To be calibrated.
  */
-const MIN_RERANK_CONFIDENCE = 0.5;
+const MIN_RERANK_CONFIDENCE = 0.4;
+
+/**
+ * The top reranked hit must score at least this to be considered a good match. If it's
+ * below this, the embed will print a "Closest match" footer.
+ */
+const GOOD_RERANK_CONFIDENCE = 0.6;
 
 export default defineCommand({
   definition: {
@@ -197,15 +203,7 @@ export default defineCommand({
           type: InteractionResponseType.ChannelMessageWithSource,
           data: {
             allowed_mentions: { parse: [] },
-            embeds: [
-              makePageEmbed(
-                context,
-                wikidotPage,
-                siteUrl,
-                isUserFrustrated ? FULLSEARCH_HINT : undefined,
-                showAllAuthors,
-              ),
-            ],
+            embeds: [makePageEmbed(context, wikidotPage, siteUrl, undefined, showAllAuthors)],
           },
         };
       } else {
@@ -253,7 +251,11 @@ export default defineCommand({
               context,
               wikidotPage,
               site.url,
-              AI_RERANK_DISCLAIMER,
+              isUserFrustrated
+                ? FULLSEARCH_HINT
+                : best.score < GOOD_RERANK_CONFIDENCE
+                  ? CLOSEST_MATCH_FOOTER
+                  : undefined,
               showAllAuthors,
             );
             return {
@@ -340,7 +342,7 @@ export default defineCommand({
               type: InteractionResponseType.ChannelMessageWithSource,
               data: {
                 allowed_mentions: { parse: [] },
-                embeds: [makePageEmbed(context, wikidotPage, site.url, "🎯 Closest match")],
+                embeds: [makePageEmbed(context, wikidotPage, site.url, CLOSEST_MATCH_FOOTER)],
               },
             };
           }
