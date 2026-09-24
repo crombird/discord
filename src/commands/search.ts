@@ -218,9 +218,9 @@ export default defineCommand({
       }
     }
 
-    if (context.isPatreonSupporter) {
-      // Rerank Typesense's candidates with Jev. Any failure or timeout falls through to
-      // the regular search below.
+    if (!/^\d+$/.exec(query)) {
+      // For non-numeric queries, attempt Typesense search with Jev as a decider first.
+      // Any failure or timeout falls through to API and direct Typesense searches below.
       const signal = AbortSignal.timeout(RERANK_TIMEOUT_MS);
       try {
         const typesenseResponse = await context.typesenseApi.request({
@@ -228,8 +228,8 @@ export default defineCommand({
           page: 1,
           siteUrl: site.url,
           // It's better to give a wide net of loosely matched candidates to Jev and let
-          // it pick the best one.
-          perPage: 30,
+          // it pick the best one. These two parameters can be calibrated later.
+          perPage: 10,
           numTypos: 2,
           // Give it even more context using pages that match by text content, even though
           // they shouldn't be directly used for matching.
