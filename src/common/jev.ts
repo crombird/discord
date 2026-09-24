@@ -11,22 +11,43 @@ export interface RerankedHit {
 }
 
 function makeRerankerQuestion(index: number): NoulQuestion {
+  // Each candidate is scored with a single noul used as the "confidence" score for
+  // the match. This is already starting to get a little bloated; TypeSafe recommends
+  // asking smaller narrower questions and combining the resulting vectors at the
+  // application level. For now, this is fine; we want the ambiguity and "intelligence"
+  // of a language model to determine what a "best" match is for a query. But any bigger
+  // than this and we should start splitting.
+  // See https://docs.typesafe.ai/concepts/how-to-build-with-system-one
+  const candidate = `candidates[${index}]`;
   return noul(
-    `Is \`candidates[${index}]\` the page the user wants from the search \`query\`? ` +
-      `Match primarily on \`title\` and \`alternateTitle\`: the query may be a partial title, a ` +
-      `misspelling, an abbreviation, or a paraphrase or synonym of either. \`path\`, \`authors\`, ` +
-      `\`tags\`, and \`contentSnippet\` (an excerpt of the page's body where the query matched, ` +
-      `if any) are weaker evidence: lean on them to tell similar pages apart and to confirm a ` +
-      `title match, but a body-text hit alone is not enough.`,
     {
-      true:
-        "The query names this page, chiefly through its title or alternate title. The path, " +
-        "authors, tags, or body excerpt may reinforce that, or identify the page when the " +
-        "query mentions them.",
-      false:
-        "The candidate is merely related to the query's topic, matches only in its body text, " +
-        "shares only an author or tag, or is a sibling with a similar name or number. Another " +
-        "page would be a better answer.",
+      question: `Is \`${candidate}\` the page the user is looking for with \`query\`?`,
+      compare: ["`query`", `\`${candidate}.title\``, `\`${candidate}.alternateTitle\``],
+      focus:
+        "The query may be a partial title, a misspelling, an abbreviation, or a paraphrase " +
+        "or synonym of the title or alternate title.",
+      supportingEvidence:
+        `\`${candidate}.path\`, \`authors\`, \`tags\`, and \`contentSnippet\` (body text ` +
+        "where the query matched) can confirm a title match or tell similar pages apart, but " +
+        "are not enough on their own.",
+      tieBreak: {
+        when: "Several candidates' titles or alternate titles match the query about equally well.",
+        prefer: [
+          "The one where the query phrase appears earliest in the title.",
+          "The one that looks like the start of a series of pages, such as a first part or a " +
+            "hub, over its later parts.",
+        ],
+      },
+    },
+    {
+      true: {
+        what: "The query names this page through its title or alternate title.",
+      },
+      false: {
+        what:
+          "The page is only on the query's topic, matches only in its body text, or is a " +
+          "similarly named sibling of a better candidate.",
+      },
     },
   );
 }
