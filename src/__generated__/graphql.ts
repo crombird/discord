@@ -1,324 +1,91 @@
-export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+/** Internal type. DO NOT USE DIRECTLY. */
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+/** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-/** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  DateTime: { input: string; output: string; }
-  URL: { input: string; output: string; }
-};
-
-export type AccountReadingListsSort = {
-  key?: InputMaybe<AccountReadingListsSortKey>;
-  order?: InputMaybe<SortOrder>;
-};
-
-export type AccountReadingListsSortKey =
-  | 'CREATED_AT'
-  | 'TITLE';
-
-/** The OAuth2 grant type applications are restricted to. */
-export type ApplicationGrantType =
-  | 'AUTHORIZATION_CODE'
-  | 'CLIENT_CREDENTIALS';
-
-export type AuthScope =
-  /** Allows the application to manage the user's account. */
-  | 'MANAGE_ACCOUNT'
-  /** Allows the application to create, update, and delete diary entries. */
-  | 'MANAGE_DIARY_ENTRIES'
-  /**
-   * Allows the application to create, update, and delete publicly viewable and
-   * private reading lists.
-   */
-  | 'MANAGE_READING_LISTS'
-  /**
-   * Allows the application to get details about the patreon account linked to
-   * the user's Crom account.
-   */
-  | 'READ_PATREON_INTEGRATION'
-  /**
-   * Allows the application to get details about the wikidot account linked to
-   * the user's Crom account.
-   */
-  | 'READ_WIKIDOT_INTEGRATION';
-
 export type BooleanFilter = {
   /** Match the provided boolean value. */
-  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  eq?: boolean | null | undefined;
   /** Match the opposite of the provided boolean value. */
-  neq?: InputMaybe<Scalars['Boolean']['input']>;
+  neq?: boolean | null | undefined;
 };
 
 export type CaseInsensitiveStringFilter = {
   /** Match strings that equal the provided value exactly. */
-  eq?: InputMaybe<Scalars['String']['input']>;
+  eq?: string | null | undefined;
   /** Match (case-insensitive) strings that equal the provided value exactly. */
-  eqLower?: InputMaybe<Scalars['String']['input']>;
+  eqLower?: string | null | undefined;
   /** Match strings that don't equal the provided value. */
-  neq?: InputMaybe<Scalars['String']['input']>;
+  neq?: string | null | undefined;
   /** Match (case-insensitive) strings that don't equal the provided value exactly. */
-  neqLower?: InputMaybe<Scalars['String']['input']>;
+  neqLower?: string | null | undefined;
   /** Match strings that start with the provided substring. */
-  startsWith?: InputMaybe<Scalars['String']['input']>;
+  startsWith?: string | null | undefined;
   /** Match (case-insensitive) strings that start with the provided substring */
-  startsWithLower?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ClientPrivilege =
-  /** Allows the client to break rate limiting requirements. */
-  | 'BYPASS_RATE_LIMITS'
-  /** Allows the crawler to update and delete publicly accessible wiki data. */
-  | 'CRAWLER'
-  /** Allows the application to get aggregate details on reading lists. */
-  | 'ENUMERATE_READING_LISTS'
-  /**
-   * Allows Crom's frontend website to authenticate users and make requests
-   * on behalf of real end users.
-   */
-  | 'MANAGE_AUTHENTICATION'
-  /**
-   * Allows access to discord guild config APIs (for all guilds).
-   * Used by the discord bot to add/edit guild-specific preferences.
-   */
-  | 'MANAGE_DISCORD_GUILDS';
-
-export type CrawlerHintType =
-  | 'NEW_PAGE'
-  | 'WIKIDOT_PAGE_CONTENT_UPDATED'
-  | 'WIKIDOT_PAGE_METADATA_UPDATED';
-
-export type CreateAccountWithMagicEmailInput = {
-  acceptTerms: Scalars['Boolean']['input'];
-  emailAddress: Scalars['String']['input'];
-  ipAddress: Scalars['String']['input'];
-  verifiedCode: Scalars['String']['input'];
-};
-
-export type CreateApplicationInput = {
-  aboutUrl?: InputMaybe<Scalars['URL']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  grantType: ApplicationGrantType;
-  name: Scalars['String']['input'];
-  redirectUris: Array<Scalars['String']['input']>;
-};
-
-export type CreateDiaryEntryInput = {
-  comment?: InputMaybe<Scalars['String']['input']>;
-  pageUrl: Scalars['URL']['input'];
-  timestamp?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type CreateDiscordIntegrationInput = {
-  code: Scalars['String']['input'];
-};
-
-export type CreatePatreonIntegrationInput = {
-  code: Scalars['String']['input'];
-};
-
-export type CreateReadingListInput = {
-  description: Scalars['String']['input'];
-  items: Array<ReadingListItemInput>;
-  privacy: ReadingListPrivacy;
-  tiers?: InputMaybe<Array<ReadingListTierInput>>;
-  title: Scalars['String']['input'];
-  view: ReadingListView;
-};
-
-export type CreateSessionWithDiscordIntegrationInput = {
-  code: Scalars['String']['input'];
-};
-
-export type CreateSessionWithMagicEmailInput = {
-  emailAddress: Scalars['String']['input'];
-  ipAddress: Scalars['String']['input'];
-  verifiedCode: Scalars['String']['input'];
-};
-
-export type CreateWikidotIntegrationInput = {
-  code: Scalars['String']['input'];
+  startsWithLower?: string | null | undefined;
 };
 
 export type DateTimeFilter = {
   /** Match timestamps that equal the provided value. */
-  eq?: InputMaybe<Scalars['DateTime']['input']>;
+  eq?: string | null | undefined;
   /** Match timestamps that are greater than the provided value. */
-  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: string | null | undefined;
   /** Match timestamps that are equal to or greater than the provided value. */
-  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: string | null | undefined;
   /** Match timestamps that are less than the provided value. */
-  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lt?: string | null | undefined;
   /** Match timestamps that are equal to or less than the provided value. */
-  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: string | null | undefined;
   /** Match timestamps that don't equal the provided value. */
-  neq?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type DeleteApplicationInput = {
-  id: Scalars['ID']['input'];
-};
-
-export type DeleteDiaryEntryInput = {
-  id: Scalars['ID']['input'];
+  neq?: string | null | undefined;
 };
 
 export type DeleteDiscordGuildManagedRoleInput = {
-  roleId: Scalars['String']['input'];
-};
-
-export type DeletePageAlternateTitlesInput = {
-  withCollectionKey: Scalars['String']['input'];
-  withoutCollectionId: Scalars['String']['input'];
-};
-
-export type DeletePageAttributionsInput = {
-  withCollectionKey: Scalars['String']['input'];
-  withoutCollectionId: Scalars['String']['input'];
-};
-
-export type DeleteReadingListInput = {
-  id: Scalars['ID']['input'];
-};
-
-export type DeleteWikidotPageInput = {
-  url: Scalars['URL']['input'];
-};
-
-export type DiaryEntryPageQueryFilter = {
-  url?: InputMaybe<PrefixStringFilter>;
-};
-
-export type DiaryEntryQueryFilter = {
-  page?: InputMaybe<DiaryEntryPageQueryFilter>;
+  roleId: string;
 };
 
 export type DiscordGuildManagedRoleConfigInput = {
-  discordGuildManagedRoleMemberConfig?: InputMaybe<DiscordGuildManagedRoleMemberConfigInput>;
-  discordGuildManagedRoleOpenConfig?: InputMaybe<DiscordGuildManagedRoleOpenConfigInput>;
-  discordGuildManagedRolePageConfig?: InputMaybe<DiscordGuildManagedRolePageConfigInput>;
-};
-
-export type DiscordGuildManagedRoleInput = {
-  config: DiscordGuildManagedRoleConfigInput;
-  roleId: Scalars['String']['input'];
+  discordGuildManagedRoleMemberConfig?: DiscordGuildManagedRoleMemberConfigInput | null | undefined;
+  discordGuildManagedRoleOpenConfig?: DiscordGuildManagedRoleOpenConfigInput | null | undefined;
+  discordGuildManagedRolePageConfig?: DiscordGuildManagedRolePageConfigInput | null | undefined;
 };
 
 export type DiscordGuildManagedRoleMemberConfigInput = {
-  wikiUrl: Scalars['URL']['input'];
+  wikiUrl: string;
 };
 
 export type DiscordGuildManagedRoleOpenConfigInput = {
-  disableAutoAssign: Scalars['Boolean']['input'];
+  disableAutoAssign: boolean;
 };
 
 export type DiscordGuildManagedRolePageConfigInput = {
-  excludeTags: Array<Scalars['String']['input']>;
-  minAgeHours?: InputMaybe<Scalars['Int']['input']>;
-  minPageCount: Scalars['Int']['input'];
-  minRating?: InputMaybe<Scalars['Int']['input']>;
-  siteUrls: Array<Scalars['URL']['input']>;
-  withTags: Array<Scalars['String']['input']>;
-};
-
-export type GrantAuthorizationInput = {
-  clientId: Scalars['String']['input'];
-  codeChallenge: Scalars['String']['input'];
-  duration: GrantAuthorizationInputDuration;
-  redirectUri: Scalars['String']['input'];
-  scope: Array<AuthScope>;
-};
-
-export type GrantAuthorizationInputDuration =
-  | 'PERMANENT'
-  | 'TEMPORARY';
-
-export type InsertPageAlternateTitlesInput = {
-  pageAlternateTitles: Array<PageAlternateTitleInput>;
-};
-
-export type InsertPageAttributionsInput = {
-  pageAttributions: Array<PageAttributionInput>;
-};
-
-export type InsertWikidotPageInput = {
-  category: Scalars['String']['input'];
-  commentCount: Scalars['Int']['input'];
-  createdAt: Scalars['DateTime']['input'];
-  createdByDisplayName: Scalars['String']['input'];
-  createdByUnixName?: InputMaybe<Scalars['String']['input']>;
-  createdByWikidotId?: InputMaybe<Scalars['String']['input']>;
-  isHidden: Scalars['Boolean']['input'];
-  isUserPage: Scalars['Boolean']['input'];
-  parentUrl?: InputMaybe<Scalars['URL']['input']>;
-  rating: Scalars['Float']['input'];
-  revisionCount: Scalars['Int']['input'];
-  source: Scalars['String']['input'];
-  summary?: InputMaybe<Scalars['String']['input']>;
-  tags: Array<Scalars['String']['input']>;
-  textContent: Scalars['String']['input'];
-  thumbnailUrl?: InputMaybe<Scalars['URL']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  url: Scalars['URL']['input'];
-  voteCount: Scalars['Int']['input'];
-  wikidotId: Scalars['String']['input'];
-};
-
-export type InsertWikidotRevisionsInput = {
-  wikidotRevisions: Array<WikidotRevisionInput>;
-};
-
-export type InsertWikidotVoteRecordsInput = {
-  wikidotVoteRecords: Array<WikidotVoteRecordInput>;
+  excludeTags: Array<string>;
+  minAgeHours?: number | null | undefined;
+  minPageCount: number;
+  minRating?: number | null | undefined;
+  siteUrls: Array<string>;
+  withTags: Array<string>;
 };
 
 export type IntFilter = {
   /** Match numbers that equal the provided value. */
-  eq?: InputMaybe<Scalars['Int']['input']>;
+  eq?: number | null | undefined;
   /** Match numbers that are greater than the provided value. */
-  gt?: InputMaybe<Scalars['Int']['input']>;
+  gt?: number | null | undefined;
   /** Match numbers that are equal to or greater than the provided value. */
-  gte?: InputMaybe<Scalars['Int']['input']>;
+  gte?: number | null | undefined;
   /** Match numbers that are less than the provided value. */
-  lt?: InputMaybe<Scalars['Int']['input']>;
+  lt?: number | null | undefined;
   /** Match numbers that are equal to or less than the provided value. */
-  lte?: InputMaybe<Scalars['Int']['input']>;
+  lte?: number | null | undefined;
   /** Match numbers that don't equal the provided value. */
-  neq?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type PageAlternateTitleInput = {
-  collectionId: Scalars['String']['input'];
-  collectionKey: Scalars['String']['input'];
-  pageUrl: Scalars['URL']['input'];
-  source?: InputMaybe<Scalars['URL']['input']>;
-  title: Scalars['String']['input'];
+  neq?: number | null | undefined;
 };
 
 export type PageAlternateTitlesQueryFilter = {
-  _and?: InputMaybe<Array<PageAlternateTitlesQueryFilter>>;
-  _not?: InputMaybe<PageAlternateTitlesQueryFilter>;
-  _or?: InputMaybe<Array<PageAlternateTitlesQueryFilter>>;
-  title?: InputMaybe<CaseInsensitiveStringFilter>;
-};
-
-export type PageAttributionInput = {
-  collectionId: Scalars['String']['input'];
-  collectionKey: Scalars['String']['input'];
-  date?: InputMaybe<Scalars['DateTime']['input']>;
-  order: Scalars['Int']['input'];
-  pageUrl: Scalars['URL']['input'];
-  source: Scalars['URL']['input'];
-  type: PageAttributionType;
-  user: Scalars['String']['input'];
+  _and?: Array<PageAlternateTitlesQueryFilter> | null | undefined;
+  _not?: PageAlternateTitlesQueryFilter | null | undefined;
+  _or?: Array<PageAlternateTitlesQueryFilter> | null | undefined;
+  title?: CaseInsensitiveStringFilter | null | undefined;
 };
 
 /**
@@ -339,24 +106,24 @@ export type PageAttributionType =
   | 'TRANSLATOR';
 
 export type PageAttributionTypeQueryFilter = {
-  eq?: InputMaybe<PageAttributionType>;
-  neq?: InputMaybe<PageAttributionType>;
+  eq?: PageAttributionType | null | undefined;
+  neq?: PageAttributionType | null | undefined;
 };
 
 export type PageAttributionsQueryFilter = {
-  _and?: InputMaybe<Array<PageAttributionsQueryFilter>>;
-  _not?: InputMaybe<PageAttributionsQueryFilter>;
-  _or?: InputMaybe<Array<PageAttributionsQueryFilter>>;
-  type?: InputMaybe<PageAttributionTypeQueryFilter>;
-  user?: InputMaybe<UserQueryFilter>;
+  _and?: Array<PageAttributionsQueryFilter> | null | undefined;
+  _not?: PageAttributionsQueryFilter | null | undefined;
+  _or?: Array<PageAttributionsQueryFilter> | null | undefined;
+  type?: PageAttributionTypeQueryFilter | null | undefined;
+  user?: UserQueryFilter | null | undefined;
 };
 
 export type PageQueryFilter = {
-  _and?: InputMaybe<Array<PageQueryFilter>>;
-  _not?: InputMaybe<PageQueryFilter>;
-  _or?: InputMaybe<Array<PageQueryFilter>>;
-  alternateTitles?: InputMaybe<PageAlternateTitlesQueryFilter>;
-  attributions?: InputMaybe<PageAttributionsQueryFilter>;
+  _and?: Array<PageQueryFilter> | null | undefined;
+  _not?: PageQueryFilter | null | undefined;
+  _or?: Array<PageQueryFilter> | null | undefined;
+  alternateTitles?: PageAlternateTitlesQueryFilter | null | undefined;
+  attributions?: PageAttributionsQueryFilter | null | undefined;
   /**
    * Experimental, may change or be removed without notice. Use with caution.
    *
@@ -366,7 +133,7 @@ export type PageQueryFilter = {
    *
    * **Notice:** This field requires the `MANAGE_DIARY_ENTRIES` scope.
    */
-  inDiary?: InputMaybe<BooleanFilter>;
+  inDiary?: BooleanFilter | null | undefined;
   /**
    * Whether the page has an entry in the diary of the account linked to the
    * provided discord account's ID. Only usable by the discord bot. Any other use
@@ -374,24 +141,24 @@ export type PageQueryFilter = {
    *
    * **Notice:** This field requires the `MANAGE_DISCORD_GUILDS` privilege.
    */
-  inDiaryByDiscordIntegrationId?: InputMaybe<StringFilter>;
-  onWikidotPage?: InputMaybe<WikidotPageQueryFilter>;
-  url?: InputMaybe<PrefixStringFilter>;
+  inDiaryByDiscordIntegrationId?: StringFilter | null | undefined;
+  onWikidotPage?: WikidotPageQueryFilter | null | undefined;
+  url?: PrefixStringFilter | null | undefined;
 };
 
 export type PageUrlReferenceQueryFilter = {
-  _and?: InputMaybe<Array<PageUrlReferenceQueryFilter>>;
-  _not?: InputMaybe<PageUrlReferenceQueryFilter>;
-  _or?: InputMaybe<Array<PageUrlReferenceQueryFilter>>;
-  alternateTitles?: InputMaybe<PageAlternateTitlesQueryFilter>;
-  attributions?: InputMaybe<PageAttributionsQueryFilter>;
-  page?: InputMaybe<PageQueryFilter>;
-  url?: InputMaybe<PrefixStringFilter>;
+  _and?: Array<PageUrlReferenceQueryFilter> | null | undefined;
+  _not?: PageUrlReferenceQueryFilter | null | undefined;
+  _or?: Array<PageUrlReferenceQueryFilter> | null | undefined;
+  alternateTitles?: PageAlternateTitlesQueryFilter | null | undefined;
+  attributions?: PageAttributionsQueryFilter | null | undefined;
+  page?: PageQueryFilter | null | undefined;
+  url?: PrefixStringFilter | null | undefined;
 };
 
 export type PagesSort = {
-  key?: InputMaybe<PagesSortKey>;
-  order?: InputMaybe<SortOrder>;
+  key?: PagesSortKey | null | undefined;
+  order?: SortOrder | null | undefined;
 };
 
 export type PagesSortKey =
@@ -408,18 +175,18 @@ export type PagesSortKey =
 
 export type PrefixStringFilter = {
   /** Match strings that equal the provided value exactly. */
-  eq?: InputMaybe<Scalars['String']['input']>;
+  eq?: string | null | undefined;
   /** Match strings that don't equal the provided value. */
-  neq?: InputMaybe<Scalars['String']['input']>;
+  neq?: string | null | undefined;
   /** Match strings that start with the provided substring. */
-  startsWith?: InputMaybe<Scalars['String']['input']>;
+  startsWith?: string | null | undefined;
 };
 
 export type ReadingListItemInput = {
-  comment?: InputMaybe<Scalars['String']['input']>;
-  insertedAt: Scalars['DateTime']['input'];
-  pageUrl: Scalars['URL']['input'];
-  tierId?: InputMaybe<Scalars['ID']['input']>;
+  comment?: string | null | undefined;
+  insertedAt: string;
+  pageUrl: string;
+  tierId?: string | number | null | undefined;
 };
 
 export type ReadingListPrivacy =
@@ -437,25 +204,14 @@ export type ReadingListPrivacy =
   | 'UNLISTED';
 
 export type ReadingListTierInput = {
-  color: Scalars['String']['input'];
-  id: Scalars['ID']['input'];
-  name: Scalars['String']['input'];
+  color: string;
+  id: string | number;
+  name: string;
 };
 
 export type ReadingListView =
   | 'ORDERED_LIST'
   | 'TIER_LIST';
-
-export type SendMagicEmailInput = {
-  emailAddress: Scalars['String']['input'];
-  intent: SendMagicEmailInputIntent;
-  ipAddress: Scalars['String']['input'];
-};
-
-export type SendMagicEmailInputIntent =
-  | 'CHANGE_EMAIL_ADDRESS'
-  | 'CREATE_ACCOUNT'
-  | 'SIGN_IN';
 
 /** The platform that hosts a wiki. */
 export type SitePlatform =
@@ -477,164 +233,69 @@ export type SortOrder =
 
 export type StringFilter = {
   /** Match strings that equal the provided value exactly. */
-  eq?: InputMaybe<Scalars['String']['input']>;
+  eq?: string | null | undefined;
   /** Match strings that don't equal the provided value. */
-  neq?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type SubmitCrawlerHintInput = {
-  pageUrl: Scalars['URL']['input'];
-  type: CrawlerHintType;
-};
-
-export type UpdateApplicationInput = {
-  aboutUrl?: InputMaybe<Scalars['URL']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  grantType?: InputMaybe<ApplicationGrantType>;
-  id: Scalars['ID']['input'];
-  name?: InputMaybe<Scalars['String']['input']>;
-  redirectUris?: InputMaybe<Array<Scalars['String']['input']>>;
-};
-
-export type UpdateDiaryEntryInput = {
-  comment?: InputMaybe<Scalars['String']['input']>;
-  id: Scalars['ID']['input'];
-  timestamp?: InputMaybe<Scalars['DateTime']['input']>;
+  neq?: string | null | undefined;
 };
 
 export type UpdateDiscordGuildInfoInput = {
-  defaultSiteUrl?: InputMaybe<Scalars['URL']['input']>;
-  guildId: Scalars['String']['input'];
-  managedRoleMessageId?: InputMaybe<Scalars['String']['input']>;
+  defaultSiteUrl?: string | null | undefined;
+  guildId: string;
+  managedRoleMessageId?: string | null | undefined;
 };
 
 export type UpdateDiscordGuildManagedRoleInput = {
   config: DiscordGuildManagedRoleConfigInput;
-  guildId: Scalars['String']['input'];
-  roleId: Scalars['String']['input'];
+  guildId: string;
+  roleId: string;
 };
 
 export type UpdateDiscordUserInfoInput = {
-  defaultSiteUrl?: InputMaybe<Scalars['URL']['input']>;
-  discordId: Scalars['String']['input'];
+  defaultSiteUrl?: string | null | undefined;
+  discordId: string;
 };
 
 export type UpdateReadingListInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  id: Scalars['ID']['input'];
-  items?: InputMaybe<Array<ReadingListItemInput>>;
-  privacy?: InputMaybe<ReadingListPrivacy>;
-  tiers?: InputMaybe<Array<ReadingListTierInput>>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  view?: InputMaybe<ReadingListView>;
-};
-
-export type UpdateWikidotPageContentInput = {
-  commentCount: Scalars['Int']['input'];
-  createdAt: Scalars['DateTime']['input'];
-  createdByDisplayName: Scalars['String']['input'];
-  createdByUnixName?: InputMaybe<Scalars['String']['input']>;
-  createdByWikidotId?: InputMaybe<Scalars['String']['input']>;
-  isHidden: Scalars['Boolean']['input'];
-  isUserPage: Scalars['Boolean']['input'];
-  parentUrl?: InputMaybe<Scalars['URL']['input']>;
-  rating: Scalars['Float']['input'];
-  revisionCount: Scalars['Int']['input'];
-  source: Scalars['String']['input'];
-  summary?: InputMaybe<Scalars['String']['input']>;
-  tags: Array<Scalars['String']['input']>;
-  textContent: Scalars['String']['input'];
-  thumbnailUrl?: InputMaybe<Scalars['URL']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  url: Scalars['URL']['input'];
-  voteCount: Scalars['Int']['input'];
-  wikidotId: Scalars['String']['input'];
-};
-
-export type UpdateWikidotPageMetadataInput = {
-  commentCount: Scalars['Int']['input'];
-  createdByDisplayName: Scalars['String']['input'];
-  createdByUnixName?: InputMaybe<Scalars['String']['input']>;
-  createdByWikidotId?: InputMaybe<Scalars['String']['input']>;
-  parentUrl?: InputMaybe<Scalars['URL']['input']>;
-  rating: Scalars['Float']['input'];
-  url: Scalars['URL']['input'];
-  voteCount: Scalars['Int']['input'];
+  description?: string | null | undefined;
+  id: string | number;
+  items?: Array<ReadingListItemInput> | null | undefined;
+  privacy?: ReadingListPrivacy | null | undefined;
+  tiers?: Array<ReadingListTierInput> | null | undefined;
+  title?: string | null | undefined;
+  view?: ReadingListView | null | undefined;
 };
 
 export type UserQueryFilter = {
-  _and?: InputMaybe<Array<UserQueryFilter>>;
-  _not?: InputMaybe<UserQueryFilter>;
-  _or?: InputMaybe<Array<UserQueryFilter>>;
-  displayName?: InputMaybe<CaseInsensitiveStringFilter>;
-};
-
-export type VerifyMagicEmailInput = {
-  code: Scalars['String']['input'];
-  emailAddress: Scalars['String']['input'];
-  ipAddress: Scalars['String']['input'];
+  _and?: Array<UserQueryFilter> | null | undefined;
+  _not?: UserQueryFilter | null | undefined;
+  _or?: Array<UserQueryFilter> | null | undefined;
+  displayName?: CaseInsensitiveStringFilter | null | undefined;
 };
 
 export type WikidotPageQueryFilter = {
-  _and?: InputMaybe<Array<WikidotPageQueryFilter>>;
-  _not?: InputMaybe<WikidotPageQueryFilter>;
-  _or?: InputMaybe<Array<WikidotPageQueryFilter>>;
-  alternateTitles?: InputMaybe<PageAlternateTitlesQueryFilter>;
-  attributions?: InputMaybe<PageAttributionsQueryFilter>;
-  category?: InputMaybe<StringFilter>;
-  children?: InputMaybe<WikidotPageQueryFilter>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  isHidden?: InputMaybe<BooleanFilter>;
-  isUserPage?: InputMaybe<BooleanFilter>;
-  parent?: InputMaybe<PageUrlReferenceQueryFilter>;
-  rating?: InputMaybe<IntFilter>;
-  tags?: InputMaybe<StringFilter>;
-  title?: InputMaybe<CaseInsensitiveStringFilter>;
-  url?: InputMaybe<PrefixStringFilter>;
-};
-
-export type WikidotRevisionInput = {
-  /** Optional because comments can be blank. */
-  comment?: InputMaybe<Scalars['String']['input']>;
-  index: Scalars['Int']['input'];
-  pageWikidotId: Scalars['String']['input'];
-  timestamp: Scalars['DateTime']['input'];
-  /** Optional because old revisions don't have a type. */
-  type?: InputMaybe<WikidotRevisionType>;
-  userDisplayName?: InputMaybe<Scalars['String']['input']>;
-  userUnixName?: InputMaybe<Scalars['String']['input']>;
-  /** Optional because revisions can be attributed to anonymous users or IP addresses. */
-  userWikidotId?: InputMaybe<Scalars['String']['input']>;
-  wikidotId: Scalars['String']['input'];
-};
-
-export type WikidotRevisionType =
-  /** When a file attachment on the page is added or removed. Flagged as type "F". */
-  | 'FILES_CHANGED'
-  /** The first revision of a page. Flagged as type "N". */
-  | 'PAGE_CREATED'
-  /** When the source of the page is changed. Flagged as type "S". */
-  | 'SOURCE_CHANGED'
-  /** When tags are changed. Flagged as type "A". */
-  | 'TAGS_CHANGED'
-  /** When the title of the page is changed. Flagged as type "T". */
-  | 'TITLE_CHANGED';
-
-export type WikidotVoteRecordInput = {
-  direction: Scalars['Int']['input'];
-  pageWikidotId: Scalars['String']['input'];
-  timestamp: Scalars['DateTime']['input'];
-  userDisplayName?: InputMaybe<Scalars['String']['input']>;
-  userUnixName?: InputMaybe<Scalars['String']['input']>;
-  userWikidotId: Scalars['String']['input'];
+  _and?: Array<WikidotPageQueryFilter> | null | undefined;
+  _not?: WikidotPageQueryFilter | null | undefined;
+  _or?: Array<WikidotPageQueryFilter> | null | undefined;
+  alternateTitles?: PageAlternateTitlesQueryFilter | null | undefined;
+  attributions?: PageAttributionsQueryFilter | null | undefined;
+  category?: StringFilter | null | undefined;
+  children?: WikidotPageQueryFilter | null | undefined;
+  createdAt?: DateTimeFilter | null | undefined;
+  isHidden?: BooleanFilter | null | undefined;
+  isUserPage?: BooleanFilter | null | undefined;
+  parent?: PageUrlReferenceQueryFilter | null | undefined;
+  rating?: IntFilter | null | undefined;
+  tags?: StringFilter | null | undefined;
+  title?: CaseInsensitiveStringFilter | null | undefined;
+  url?: PrefixStringFilter | null | undefined;
 };
 
 export type GetCurrentDefaultReadingListItemsQueryVariables = Exact<{
-  discordId: Scalars['String']['input'];
+  discordId: string;
 }>;
 
 
-export type GetCurrentDefaultReadingListItemsQuery = { discordUserInfo: { account?: { defaultReadingList: { id: string, slug: string, items: Array<{ comment?: string | null, insertedAt: string, page: { url: string } }> } } | null } };
+export type GetCurrentDefaultReadingListItemsQuery = { discordUserInfo: { account: { defaultReadingList: { id: string, slug: string, items: Array<{ comment: string | null, insertedAt: string, page: { url: string } }> } } | null } };
 
 export type UpdateCurrentDefaultReadingListItemsMutationVariables = Exact<{
   input: UpdateReadingListInput;
@@ -644,30 +305,30 @@ export type UpdateCurrentDefaultReadingListItemsMutationVariables = Exact<{
 export type UpdateCurrentDefaultReadingListItemsMutation = { updateReadingList: { readingList: { id: string } } };
 
 export type AuthorNamesByRankQueryVariables = Exact<{
-  rank: Scalars['Int']['input'];
-  siteUrl?: InputMaybe<Scalars['URL']['input']>;
+  rank: number;
+  siteUrl?: string | null | undefined;
 }>;
 
 
-export type AuthorNamesByRankQuery = { usersByRank_v1: Array<{ id: string, displayName: string, statistics?: { rank: number, totalRating: number } | null }> };
+export type AuthorNamesByRankQuery = { usersByRank_v1: Array<{ id: string, displayName: string, statistics: { rank: number, totalRating: number } | null }> };
 
 type BasicUserEmbedInfo_UserWikidotNameReference_Fragment = { __typename: 'UserWikidotNameReference', displayName: string };
 
-type BasicUserEmbedInfo_WikidotUser_Fragment = { __typename: 'WikidotUser', wikidotId: string, displayName: string, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null };
+type BasicUserEmbedInfo_WikidotUser_Fragment = { __typename: 'WikidotUser', wikidotId: string, displayName: string, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null };
 
 export type BasicUserEmbedInfoFragment =
   | BasicUserEmbedInfo_UserWikidotNameReference_Fragment
   | BasicUserEmbedInfo_WikidotUser_Fragment
 ;
 
-type AllSitesUserEmbedInfo_UserWikidotNameReference_Fragment = { statistics?: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
-        | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
-        | { __typename: 'WikidotPage', title: string, rating?: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
+type AllSitesUserEmbedInfo_UserWikidotNameReference_Fragment = { statistics: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
+        | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
+        | { __typename: 'WikidotPage', title: string, rating: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
        }> } };
 
-type AllSitesUserEmbedInfo_WikidotUser_Fragment = { statistics?: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
-        | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
-        | { __typename: 'WikidotPage', title: string, rating?: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
+type AllSitesUserEmbedInfo_WikidotUser_Fragment = { statistics: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
+        | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
+        | { __typename: 'WikidotPage', title: string, rating: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
        }> } };
 
 export type AllSitesUserEmbedInfoFragment =
@@ -675,14 +336,14 @@ export type AllSitesUserEmbedInfoFragment =
   | AllSitesUserEmbedInfo_WikidotUser_Fragment
 ;
 
-type SiteSpecificUserEmbedInfo_UserWikidotNameReference_Fragment = { userPage?: { url: string } | null, statistics?: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
-        | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
-        | { __typename: 'WikidotPage', title: string, rating?: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
+type SiteSpecificUserEmbedInfo_UserWikidotNameReference_Fragment = { userPage: { url: string } | null, statistics: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
+        | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
+        | { __typename: 'WikidotPage', title: string, rating: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
        }> } };
 
-type SiteSpecificUserEmbedInfo_WikidotUser_Fragment = { userPage?: { url: string } | null, statistics?: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
-        | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
-        | { __typename: 'WikidotPage', title: string, rating?: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
+type SiteSpecificUserEmbedInfo_WikidotUser_Fragment = { userPage: { url: string } | null, statistics: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
+        | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
+        | { __typename: 'WikidotPage', title: string, rating: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
        }> } };
 
 export type SiteSpecificUserEmbedInfoFragment =
@@ -691,54 +352,54 @@ export type SiteSpecificUserEmbedInfoFragment =
 ;
 
 export type SiteSpecificAuthorInfoByIdQueryVariables = Exact<{
-  id: Scalars['ID']['input'];
-  siteUrl: Scalars['URL']['input'];
-  siteUrlString: Scalars['String']['input'];
+  id: string | number;
+  siteUrl: string;
+  siteUrlString: string;
 }>;
 
 
-export type SiteSpecificAuthorInfoByIdQuery = { user?:
-    | { __typename: 'UserWikidotNameReference', displayName: string, userPage?: { url: string } | null, statistics?: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
-            | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
-            | { __typename: 'WikidotPage', title: string, rating?: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
+export type SiteSpecificAuthorInfoByIdQuery = { user:
+    | { __typename: 'UserWikidotNameReference', displayName: string, userPage: { url: string } | null, statistics: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
+            | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
+            | { __typename: 'WikidotPage', title: string, rating: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
            }> } }
-    | { __typename: 'WikidotUser', wikidotId: string, displayName: string, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null, userPage?: { url: string } | null, statistics?: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
-            | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
-            | { __typename: 'WikidotPage', title: string, rating?: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
+    | { __typename: 'WikidotUser', wikidotId: string, displayName: string, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null, userPage: { url: string } | null, statistics: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
+            | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
+            | { __typename: 'WikidotPage', title: string, rating: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
            }> } }
    | null };
 
 export type AllSitesAuthorInfoByIdQueryVariables = Exact<{
-  id: Scalars['ID']['input'];
+  id: string | number;
 }>;
 
 
-export type AllSitesAuthorInfoByIdQuery = { user?:
-    | { __typename: 'UserWikidotNameReference', displayName: string, statistics?: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
-            | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
-            | { __typename: 'WikidotPage', title: string, rating?: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
+export type AllSitesAuthorInfoByIdQuery = { user:
+    | { __typename: 'UserWikidotNameReference', displayName: string, statistics: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
+            | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
+            | { __typename: 'WikidotPage', title: string, rating: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
            }> } }
-    | { __typename: 'WikidotUser', wikidotId: string, displayName: string, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null, statistics?: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
-            | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
-            | { __typename: 'WikidotPage', title: string, rating?: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
+    | { __typename: 'WikidotUser', wikidotId: string, displayName: string, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null, statistics: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
+            | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
+            | { __typename: 'WikidotPage', title: string, rating: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
            }> } }
    | null };
 
 export type SearchUsersQueryVariables = Exact<{
-  query: Scalars['String']['input'];
-  siteUrl?: InputMaybe<Scalars['URL']['input']>;
+  query: string;
+  siteUrl?: string | null | undefined;
 }>;
 
 
-export type SearchUsersQuery = { searchUsers_v1: Array<{ id: string, wikidotUser?: { id: string } | null }> };
+export type SearchUsersQuery = { searchUsers_v1: Array<{ id: string, wikidotUser: { id: string } | null }> };
 
-type PageEmbedInfo_RuFoundationPage_Fragment = { __typename: 'RuFoundationPage', url: string, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-      | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+type PageEmbedInfo_RuFoundationPage_Fragment = { __typename: 'RuFoundationPage', url: string, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+      | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
       | { __typename: 'WikidotUser', displayName: string }
      }>, alternateTitles: Array<{ title: string }> };
 
-type PageEmbedInfo_WikidotPage_Fragment = { __typename: 'WikidotPage', title: string, rating?: number | null, voteCount: number, tags: Array<string>, createdAt: string, thumbnailUrl?: string | null, summary?: string | null, url: string, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-      | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+type PageEmbedInfo_WikidotPage_Fragment = { __typename: 'WikidotPage', title: string, rating: number | null, voteCount: number, tags: Array<string>, createdAt: string, thumbnailUrl: string | null, summary: string | null, url: string, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+      | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
       | { __typename: 'WikidotUser', displayName: string }
      }>, alternateTitles: Array<{ title: string }> };
 
@@ -748,92 +409,92 @@ export type PageEmbedInfoFragment =
 ;
 
 export type KillAgentSourceInfoQueryVariables = Exact<{
-  url: Scalars['URL']['input'];
-  siteUrl: Scalars['URL']['input'];
+  url: string;
+  siteUrl: string;
 }>;
 
 
-export type KillAgentSourceInfoQuery = { wikidotPage?: { url: string, title: string, rating?: number | null, alternateTitles: Array<{ title: string }>, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-        | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+export type KillAgentSourceInfoQuery = { wikidotPage: { url: string, title: string, rating: number | null, alternateTitles: Array<{ title: string }>, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+        | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
         | { __typename: 'WikidotUser', displayName: string }
        }> } | null };
 
 export type LastCreatedQueryVariables = Exact<{
-  siteUrl: Scalars['URL']['input'];
-  siteUrlPrefix: Scalars['String']['input'];
-  cutoffTime: Scalars['DateTime']['input'];
-  first?: InputMaybe<Scalars['Int']['input']>;
-  after?: InputMaybe<Scalars['ID']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  before?: InputMaybe<Scalars['ID']['input']>;
+  siteUrl: string;
+  siteUrlPrefix: string;
+  cutoffTime: string;
+  first?: number | null | undefined;
+  after?: string | number | null | undefined;
+  last?: number | null | undefined;
+  before?: string | number | null | undefined;
 }>;
 
 
-export type LastCreatedQuery = { pages: { pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor?: string | null, endCursor?: string | null }, edges: Array<{ node:
-        | { __typename: 'RuFoundationPage', url: string, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-              | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+export type LastCreatedQuery = { pages: { pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string | null, endCursor: string | null }, edges: Array<{ node:
+        | { __typename: 'RuFoundationPage', url: string, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+              | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
               | { __typename: 'WikidotUser', displayName: string }
              }>, alternateTitles: Array<{ title: string }> }
-        | { __typename: 'WikidotPage', title: string, rating?: number | null, createdAt: string, tags: Array<string>, url: string, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-              | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+        | { __typename: 'WikidotPage', title: string, rating: number | null, createdAt: string, tags: Array<string>, url: string, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+              | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
               | { __typename: 'WikidotUser', displayName: string }
              }>, alternateTitles: Array<{ title: string }> }
        }> } };
 
 export type PageByUrlQueryVariables = Exact<{
-  url: Scalars['URL']['input'];
-  siteUrl: Scalars['URL']['input'];
+  url: string;
+  siteUrl: string;
 }>;
 
 
-export type PageByUrlQuery = { wikidotPage?: { __typename: 'WikidotPage', title: string, rating?: number | null, voteCount: number, tags: Array<string>, createdAt: string, thumbnailUrl?: string | null, summary?: string | null, url: string, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-        | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+export type PageByUrlQuery = { wikidotPage: { __typename: 'WikidotPage', title: string, rating: number | null, voteCount: number, tags: Array<string>, createdAt: string, thumbnailUrl: string | null, summary: string | null, url: string, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+        | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
         | { __typename: 'WikidotUser', displayName: string }
        }>, alternateTitles: Array<{ title: string }> } | null };
 
 export type ListPagesQueryVariables = Exact<{
   filter: PageQueryFilter;
   sort: PagesSort;
-  siteUrl: Scalars['URL']['input'];
+  siteUrl: string;
 }>;
 
 
 export type ListPagesQuery = { pages: { pageInfo: { hasNextPage: boolean }, edges: Array<{ node:
-        | { __typename: 'RuFoundationPage', url: string, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-              | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+        | { __typename: 'RuFoundationPage', url: string, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+              | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
               | { __typename: 'WikidotUser', displayName: string }
              }>, alternateTitles: Array<{ title: string }> }
-        | { __typename: 'WikidotPage', title: string, rating?: number | null, voteCount: number, tags: Array<string>, createdAt: string, thumbnailUrl?: string | null, summary?: string | null, url: string, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-              | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+        | { __typename: 'WikidotPage', title: string, rating: number | null, voteCount: number, tags: Array<string>, createdAt: string, thumbnailUrl: string | null, summary: string | null, url: string, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+              | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
               | { __typename: 'WikidotUser', displayName: string }
              }>, alternateTitles: Array<{ title: string }> }
        }> }, aggregatePages: { _count: number } };
 
 export type RandomPageQueryVariables = Exact<{
-  siteUrl: Scalars['URL']['input'];
+  siteUrl: string;
   filter: PageQueryFilter;
 }>;
 
 
-export type RandomPageQuery = { randomPage_v1?:
-    | { __typename: 'RuFoundationPage', url: string, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-          | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+export type RandomPageQuery = { randomPage_v1:
+    | { __typename: 'RuFoundationPage', url: string, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+          | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
           | { __typename: 'WikidotUser', displayName: string }
          }>, alternateTitles: Array<{ title: string }> }
-    | { __typename: 'WikidotPage', title: string, rating?: number | null, voteCount: number, tags: Array<string>, createdAt: string, thumbnailUrl?: string | null, summary?: string | null, url: string, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-          | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+    | { __typename: 'WikidotPage', title: string, rating: number | null, voteCount: number, tags: Array<string>, createdAt: string, thumbnailUrl: string | null, summary: string | null, url: string, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+          | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
           | { __typename: 'WikidotUser', displayName: string }
          }>, alternateTitles: Array<{ title: string }> }
    | null, aggregatePages: { _count: number } };
 
 export type GetDefaultReadingListQueryVariables = Exact<{
-  discordId: Scalars['String']['input'];
+  discordId: string;
 }>;
 
 
-export type GetDefaultReadingListQuery = { discordUserInfo: { account?: { defaultReadingList: { slug: string, title: string, updatedAt: string, privacy: ReadingListPrivacy, items: Array<{ comment?: string | null, page: { url: string, page?:
+export type GetDefaultReadingListQuery = { discordUserInfo: { account: { defaultReadingList: { slug: string, title: string, updatedAt: string, privacy: ReadingListPrivacy, items: Array<{ comment: string | null, page: { url: string, page:
               | { __typename: 'RuFoundationPage', alternateTitles: Array<{ title: string }> }
-              | { __typename: 'WikidotPage', title: string, rating?: number | null, alternateTitles: Array<{ title: string }> }
+              | { __typename: 'WikidotPage', title: string, rating: number | null, alternateTitles: Array<{ title: string }> }
              | null } }> } } | null } };
 
 export type GetPageCountQueryVariables = Exact<{
@@ -846,25 +507,25 @@ export type GetPageCountQuery = { aggregatePages: { _count: number } };
 export type ManagedRoleConfigFragment = { roleId: string, config:
     | { __typename: 'DiscordGuildManagedRoleMemberConfig', wikiUrl: string }
     | { __typename: 'DiscordGuildManagedRoleOpenConfig', disableAutoAssign: boolean }
-    | { __typename: 'DiscordGuildManagedRolePageConfig', minPageCount: number, siteUrls: Array<string>, minRating?: number | null, minAgeHours?: number | null, withTags: Array<string>, excludeTags: Array<string> }
+    | { __typename: 'DiscordGuildManagedRolePageConfig', minPageCount: number, siteUrls: Array<string>, minRating: number | null, minAgeHours: number | null, withTags: Array<string>, excludeTags: Array<string> }
    };
 
 export type GetWikidotUsernameFromDiscordIdQueryVariables = Exact<{
-  discordId: Scalars['String']['input'];
+  discordId: string;
 }>;
 
 
-export type GetWikidotUsernameFromDiscordIdQuery = { discordUserInfo: { account?: { wikidotIntegration?: { displayName: string, unixName: string, wikidotId: string } | null } | null } };
+export type GetWikidotUsernameFromDiscordIdQuery = { discordUserInfo: { account: { wikidotIntegration: { displayName: string, unixName: string, wikidotId: string } | null } | null } };
 
 export type GetGuildRolesQueryVariables = Exact<{
-  guildId: Scalars['String']['input'];
+  guildId: string;
 }>;
 
 
 export type GetGuildRolesQuery = { discordGuildInfo: { managedRoles: Array<{ roleId: string, config:
         | { __typename: 'DiscordGuildManagedRoleMemberConfig', wikiUrl: string }
         | { __typename: 'DiscordGuildManagedRoleOpenConfig', disableAutoAssign: boolean }
-        | { __typename: 'DiscordGuildManagedRolePageConfig', minPageCount: number, siteUrls: Array<string>, minRating?: number | null, minAgeHours?: number | null, withTags: Array<string>, excludeTags: Array<string> }
+        | { __typename: 'DiscordGuildManagedRolePageConfig', minPageCount: number, siteUrls: Array<string>, minRating: number | null, minAgeHours: number | null, withTags: Array<string>, excludeTags: Array<string> }
        }> } };
 
 export type UpdateManagedRoleMutationVariables = Exact<{
@@ -875,7 +536,7 @@ export type UpdateManagedRoleMutationVariables = Exact<{
 export type UpdateManagedRoleMutation = { updateDiscordGuildManagedRole: { discordGuildManagedRole: { roleId: string, config:
         | { __typename: 'DiscordGuildManagedRoleMemberConfig', wikiUrl: string }
         | { __typename: 'DiscordGuildManagedRoleOpenConfig', disableAutoAssign: boolean }
-        | { __typename: 'DiscordGuildManagedRolePageConfig', minPageCount: number, siteUrls: Array<string>, minRating?: number | null, minAgeHours?: number | null, withTags: Array<string>, excludeTags: Array<string> }
+        | { __typename: 'DiscordGuildManagedRolePageConfig', minPageCount: number, siteUrls: Array<string>, minRating: number | null, minAgeHours: number | null, withTags: Array<string>, excludeTags: Array<string> }
        } } };
 
 export type DeleteManagedRoleMutationVariables = Exact<{
@@ -886,42 +547,50 @@ export type DeleteManagedRoleMutationVariables = Exact<{
 export type DeleteManagedRoleMutation = { deleteDiscordGuildManagedRole: { ok: boolean } };
 
 export type SearchPagesQueryVariables = Exact<{
-  query: Scalars['String']['input'];
-  siteUrl: Scalars['URL']['input'];
+  query: string;
+  siteUrl: string;
 }>;
 
 
 export type SearchPagesQuery = { searchPages_v1: Array<
-    | { __typename: 'RuFoundationPage', url: string, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-          | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+    | { __typename: 'RuFoundationPage', url: string, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+          | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
           | { __typename: 'WikidotUser', displayName: string }
          }>, alternateTitles: Array<{ title: string }> }
-    | { __typename: 'WikidotPage', title: string, rating?: number | null, voteCount: number, tags: Array<string>, createdAt: string, thumbnailUrl?: string | null, summary?: string | null, url: string, attributions: Array<{ type: PageAttributionType, date?: string | null, order: number, user:
-          | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+    | { __typename: 'WikidotPage', title: string, rating: number | null, voteCount: number, tags: Array<string>, createdAt: string, thumbnailUrl: string | null, summary: string | null, url: string, attributions: Array<{ type: PageAttributionType, date: string | null, order: number, user:
+          | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
           | { __typename: 'WikidotUser', displayName: string }
          }>, alternateTitles: Array<{ title: string }> }
   > };
 
-export type SiteSpecificAuthorInfoByDiscordIdQueryVariables = Exact<{
-  discordId: Scalars['String']['input'];
-  siteUrl: Scalars['URL']['input'];
-  siteUrlString: Scalars['String']['input'];
+export type ExactUserMatchQueryVariables = Exact<{
+  query: string;
+  siteUrl?: string | null | undefined;
 }>;
 
 
-export type SiteSpecificAuthorInfoByDiscordIdQuery = { discordUserInfo: { account?: { wikidotIntegration?: { wikidotUser?: { __typename: 'WikidotUser', wikidotId: string, displayName: string, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null, userPage?: { url: string } | null, statistics?: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
-                | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
-                | { __typename: 'WikidotPage', title: string, rating?: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
+export type ExactUserMatchQuery = { searchUsers_v1: Array<{ displayName: string }> };
+
+export type SiteSpecificAuthorInfoByDiscordIdQueryVariables = Exact<{
+  discordId: string;
+  siteUrl: string;
+  siteUrlString: string;
+}>;
+
+
+export type SiteSpecificAuthorInfoByDiscordIdQuery = { discordUserInfo: { account: { wikidotIntegration: { wikidotUser: { __typename: 'WikidotUser', wikidotId: string, displayName: string, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null, userPage: { url: string } | null, statistics: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
+                | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
+                | { __typename: 'WikidotPage', title: string, rating: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
                }> } } | null } | null } | null } };
 
 export type AllSitesAuthorInfoByDiscordIdQueryVariables = Exact<{
-  discordId: Scalars['String']['input'];
+  discordId: string;
 }>;
 
 
-export type AllSitesAuthorInfoByDiscordIdQuery = { discordUserInfo: { account?: { wikidotIntegration?: { wikidotUser?: { __typename: 'WikidotUser', wikidotId: string, displayName: string, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null, statistics?: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
-                | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
-                | { __typename: 'WikidotPage', title: string, rating?: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date?: string | null }> }
+export type AllSitesAuthorInfoByDiscordIdQuery = { discordUserInfo: { account: { wikidotIntegration: { wikidotUser: { __typename: 'WikidotUser', wikidotId: string, displayName: string, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null, statistics: { rank: number, totalRating: number, meanRating: number, pageCount: number, pageCountScp: number, pageCountTale: number, pageCountGoiFormat: number, pageCountArtwork: number, pageCountLevel: number, pageCountEntity: number, pageCountObject: number } | null, attributedPages: { edges: Array<{ node:
+                | { __typename: 'RuFoundationPage', url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
+                | { __typename: 'WikidotPage', title: string, rating: number | null, createdAt: string, tags: Array<string>, url: string, alternateTitles: Array<{ title: string }>, attributions: Array<{ date: string | null }> }
                }> } } | null } | null } | null } };
 
 export type UpdateDiscordGuildInfoMutationVariables = Exact<{
@@ -936,29 +605,29 @@ export type UpdateDiscordUserInfoMutationVariables = Exact<{
 }>;
 
 
-export type UpdateDiscordUserInfoMutation = { updateDiscordUserInfo: { discordUserInfo: { defaultSiteUrl?: string | null } } };
+export type UpdateDiscordUserInfoMutation = { updateDiscordUserInfo: { discordUserInfo: { defaultSiteUrl: string | null } } };
 
 export type GetGuildContextInfoQueryVariables = Exact<{
-  userId: Scalars['String']['input'];
-  guildId: Scalars['String']['input'];
+  userId: string;
+  guildId: string;
 }>;
 
 
-export type GetGuildContextInfoQuery = { discordGuildInfo: { defaultSiteUrl: string }, discordUserInfo: { defaultSiteUrl?: string | null, account?: { patreonIntegration?: { isActive: boolean } | null } | null } };
+export type GetGuildContextInfoQuery = { discordGuildInfo: { defaultSiteUrl: string }, discordUserInfo: { defaultSiteUrl: string | null, account: { patreonIntegration: { isActive: boolean } | null } | null } };
 
 export type GetDmContextInfoQueryVariables = Exact<{
-  userId: Scalars['String']['input'];
+  userId: string;
 }>;
 
 
-export type GetDmContextInfoQuery = { discordUserInfo: { defaultSiteUrl?: string | null, account?: { patreonIntegration?: { isActive: boolean } | null } | null } };
+export type GetDmContextInfoQuery = { discordUserInfo: { defaultSiteUrl: string | null, account: { patreonIntegration: { isActive: boolean } | null } | null } };
 
 export type GenerateSitesScriptQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GenerateSitesScriptQuery = { sites: Array<{ platform: SitePlatform, type: SiteType, url: string, displayName: string, recentlyCreatedUrl?: string | null }> };
+export type GenerateSitesScriptQuery = { sites: Array<{ platform: SitePlatform, type: SiteType, url: string, displayName: string, recentlyCreatedUrl: string | null, tagConfigUrl: string | null }> };
 
-export type AttributionEmbedInfoFragment = { type: PageAttributionType, date?: string | null, order: number, user:
-    | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser?: { userPage?: { url: string } | null, linkedAccount?: { patreonIntegration?: { isActive: boolean } | null } | null } | null }
+export type AttributionEmbedInfoFragment = { type: PageAttributionType, date: string | null, order: number, user:
+    | { __typename: 'UserWikidotNameReference', displayName: string, wikidotUser: { userPage: { url: string } | null, linkedAccount: { patreonIntegration: { isActive: boolean } | null } | null } | null }
     | { __typename: 'WikidotUser', displayName: string }
    };

@@ -27,6 +27,8 @@ import { findOption, getInteractionUser } from "../util/discord-interaction";
 import { gql } from "../common/crom";
 import { PAGE_EMBED_INFO_FRAGMENT, makePageEmbed } from "./embeds/page-embed";
 import type {
+  ExactUserMatchQuery,
+  ExactUserMatchQueryVariables,
   PageByUrlQuery,
   PageByUrlQueryVariables,
   SearchPagesQuery,
@@ -52,9 +54,19 @@ const PAGE_BY_URL_QUERY = gql`
   }
 `;
 
+const EXACT_USER_MATCH_QUERY = gql`
+  query ExactUserMatch($query: String!, $siteUrl: URL) {
+    searchUsers_v1(query: $query, siteUrl: $siteUrl) {
+      displayName
+    }
+  }
+`;
+
 const FULLSEARCH_HINT = "Can't find what you're looking for? Try /fullsearch.";
 
 const CLOSEST_MATCH_FOOTER = "🎯 Closest match";
+
+const AUTHOR_COMMAND = "</author:875878095092060165>";
 
 const userInvocationCache = new LRUCache<string, { windowStart: number; invocations: number }>(100);
 function trackRecentCall(discordId: string): number {
@@ -290,14 +302,21 @@ export default defineCommand({
       return { type: InteractionResponseType.ChannelMessageWithSource, data: { embeds: [embed] } };
     }
 
-    // API search didn't find anything, so try Typesense's fuzzy match.
-    // Don't reach out to Typesense fuzzy match if it's probably an exact SCP number.
+    // API search didn't find anything, so try Typesense's fuzzy match. Don't reach out to Typesense
+    // if it's probably an exact SCP number. We can't reuse the previous search because it's much looser
+    // and covers text content too, which we don't want for titles.
     if (!/^\d+$/.exec(query)) {
       try {
-        const typesense = await context.typesenseApi.request({ query, page: 1, siteUrl: site.url });
+        const [typesense, exactUserMatch] = await Promise.all([
+          context.typesenseApi.request({ query, page: 1, siteUrl: site.url }),
+          context.cromApi.request<ExactUserMatchQuery, ExactUserMatchQueryVariables>(
+            EXACT_USER_MATCH_QUERY,
+            { query, siteUrl: site.url },
+          ),
+        ]);
 
         if (typesense.hits.length > 1) {
-          const description = typesense.hits
+          let description = typesense.hits
             .map(({ document, highlights: [highlight] }) => {
               const rating = formatRating(document.rating);
               const url = httpsify(document.url);
@@ -311,6 +330,13 @@ export default defineCommand({
               );
             })
             .join("\n");
+
+          const queryMatchesUserExactly = exactUserMatch.searchUsers_v1.some(
+            (user) => user.displayName.toLowerCase() === query.toLowerCase(),
+          );
+          if (queryMatchesUserExactly) {
+            description = `*Looking for the author named "${query}"? Use ${AUTHOR_COMMAND}.*\n⸺\nPages:\n${description}`;
+          }
 
           return {
             type: InteractionResponseType.ChannelMessageWithSource,

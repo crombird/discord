@@ -10,11 +10,10 @@ const config: CodegenConfig = {
         },
       },
       documents: ["src/**/*.ts"],
-      plugins: ["typescript", "typescript-operations"],
+      plugins: ["typescript-operations"],
       config: {
         enumsAsTypes: true,
         skipTypename: true,
-        onlyOperationTypes: true,
         strictScalars: true,
         scalars: { DateTime: "string", URL: "string", Color: "string" },
       },
