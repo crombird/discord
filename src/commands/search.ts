@@ -230,7 +230,9 @@ export default defineCommand({
       }
     }
 
-    if (!/^\d+$/.exec(query)) {
+    const isSCPNumberQuery = /^L?\d+$/i.exec(query);
+
+    if (!isSCPNumberQuery) {
       // For non-numeric queries, attempt Typesense search with Jev as a decider first.
       // Any failure or timeout falls through to API and direct Typesense searches below.
       const signal = AbortSignal.timeout(RERANK_TIMEOUT_MS);
@@ -305,7 +307,7 @@ export default defineCommand({
     // API search didn't find anything, so try Typesense's fuzzy match. Don't reach out to Typesense
     // if it's probably an exact SCP number. We can't reuse the previous search because it's much looser
     // and covers text content too, which we don't want for titles.
-    if (!/^\d+$/.exec(query)) {
+    if (!isSCPNumberQuery) {
       try {
         const [typesense, exactUserMatch] = await Promise.all([
           context.typesenseApi.request({ query, page: 1, siteUrl: site.url }),
